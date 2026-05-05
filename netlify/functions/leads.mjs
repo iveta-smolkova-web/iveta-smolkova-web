@@ -241,7 +241,10 @@ export default async (req) => {
     });
   } catch (err) {
     console.error('leads function error:', err);
-    return new Response(JSON.stringify({ error: 'Interní chyba — zkuste to prosím znovu nebo zavolejte přímo.' }), {
+    return new Response(JSON.stringify({
+      error: 'Interní chyba — zkuste to prosím znovu nebo zavolejte přímo.',
+      debug: String(err && err.message || err).slice(0, 500),
+    }), {
       status: 500,
       headers: { 'Content-Type': 'application/json', ...cors },
     });
