@@ -1,0 +1,273 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const title = "Pomáhám lidem s bydlením | Mgr. Iveta Smolková";
+const description = "Mgr. Iveta Smolková — realitní makléřka v Brně, Olomouci a Zlíně. Exkluzivní realitní služby, osobní přístup, 10+ let zkušeností. Vypočítejte si individuální nabídku za 60 sekund.";
+
+const pains = [
+  {
+    icon: "📅",
+    title: 'Nechci kupu prohlídek po práci',
+    text: "Zorganizuji prohlídky tak, aby zabraly minimum vašeho času. V mnoha případech prodám i bez nich."
+  },
+  {
+    icon: "💸",
+    title: 'Bojím se, že prodejem ztratím tisíce',
+    text: "Nastavím tržně ověřenou cenu, na které neproděláte. Vyjednávám za vás, ne za kupce."
+  },
+  {
+    icon: "😤",
+    title: 'RK už mě jednou zklamala',
+    text: 'Žádné šablonovité nabízení. Pravidelně vás informuji, jste u všeho. Smlouva s jasnými výstupy.'
+  }
+];
+
+const steps = [
+  { n: "01", title: "Vyplníte krátký dotazník", text: "Trvá 60 sekund. Žádné fotky ani dokumenty zatím nepotřebujete." },
+  { n: "02", title: "Zavolám vám do 24 hodin", text: "Probereme, co pro vás dává smysl. Bezplatně, nezávazně." },
+  { n: "03", title: "Prodáme za nejlepší cenu", text: "Marketing, prohlídky, právní servis a převod. Vy jen podepisujete." }
+];
+
+const refs = [
+  {
+    quote: "Iveta nás provedla prodejem v Žabovřeskách. Za 14 dní bylo prodáno, dostali jsme cenu vyšší, než jsme čekali.",
+    name: "Jana K.",
+    location: "Brno-Žabovřesky"
+  },
+  {
+    quote: "Po špatné zkušenosti s jinou kanceláří jsme ztratili rok. S Ivetou byl byt prodán do měsíce.",
+    name: "Pavel M.",
+    location: "Brno-střed"
+  },
+  {
+    quote: "Pozitivní přístup, milé vystupování, ochota při prodeji bytu v Litovli byla velmi příjemnou zkušeností. Vše proběhlo v pořádku a mohu jen doporučit.",
+    name: "Dagmar",
+    location: "Litovel"
+  }
+];
+
+const faqs = [
+  {
+    q: "Kolik stojí vaše služby?",
+    a: "Provize je standardní v oboru a vždy se domlouvá předem písemně, bez skrytých poplatků. Mým cílem je, aby výsledek po mé práci byl pro vás jednoznačně lepší než kdybyste prodávali sami."
+  },
+  {
+    q: "Co když nedokážete byt prodat?",
+    a: "Smlouvu uzavírám s jasnými výstupy a milníky. Pokud byt v dohodnutém čase neprodáme, máte právo od smlouvy bez sankcí odstoupit."
+  },
+  {
+    q: "Jaký je rozdíl mezi vámi a Reas / RE/MAX?",
+    a: "Nejsem franšíza ani algoritmus. Vedu prodej osobně, znáte mě jménem, máte na mě přímé číslo. U mě nedostanete koordinátora #4 z call centra."
+  },
+  {
+    q: "Jak rychle prodáte?",
+    a: "Průměr v Brně je v mé praxi 30 dní od podpisu smlouvy do rezervace. Dobře připravený a oceněný byt často prodám do 14 dní."
+  },
+  {
+    q: "Co se zařizováním smluv a převodu?",
+    a: "Komplet přebírám — rezervace, kupní smlouva, advokátní úschova, návrh na vklad do katastru, předání bytu. Vy jen podepisujete na předem domluvených schůzkách."
+  }
+];
+---
+
+<Layout title={title} description={description}>
+  <Nav />
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden bg-gradient-to-b from-brand-50 via-white to-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 md:pt-24 md:pb-28 grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <div class="inline-flex items-center gap-2 bg-white border border-brand-200 rounded-full px-4 py-1.5 text-xs font-medium text-brand-700 mb-6 shadow-sm uppercase tracking-widest">
+          <span class="w-2 h-2 rounded-full bg-brand-500"></span>
+          Exkluzivní realitní služby
+        </div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-ink-900 leading-[1.05]">
+          Pomáhám lidem
+          <span class="block text-brand-500">s&nbsp;bydlením</span>
+        </h1>
+        <p class="mt-6 text-lg md:text-xl text-slate-700 max-w-xl leading-relaxed">
+          Prodám váš byt v&nbsp;Brně do 30&nbsp;dní — bez prohlídek na úkor vašich víkendů. Mgr. Iveta Smolková, 10+&nbsp;let zkušeností v&nbsp;Brně, Olomouci a&nbsp;Zlíně.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-4">
+          <a href="/prodej-bytu" class="inline-flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600 text-white font-semibold px-7 py-4 rounded-full shadow-lg shadow-brand-500/25 transition tracking-wide">
+            Chci ocenit svou nemovitost
+            <span aria-hidden>→</span>
+          </a>
+          <a href="tel:+420777879317" class="inline-flex items-center justify-center gap-2 bg-white border border-slate-200 hover:border-brand-400 text-ink-900 font-semibold px-7 py-4 rounded-full transition">
+            📞 +420 777 879 317
+          </a>
+        </div>
+        <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-slate-500">
+          <div class="flex items-center gap-2"><span class="text-brand-500">✓</span> Nezávazně</div>
+          <div class="flex items-center gap-2"><span class="text-brand-500">✓</span> Zdarma ocenění</div>
+          <div class="flex items-center gap-2"><span class="text-brand-500">✓</span> Odpověď do 24 h</div>
+        </div>
+      </div>
+      <div class="relative">
+        <img src="/images/iveta-portrait.jpg" alt="Mgr. Iveta Smolková" class="aspect-[4/5] w-full object-cover rounded-3xl shadow-2xl shadow-ink-700/20" width="728" height="1024" />
+        <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-4 border border-slate-100 max-w-[200px]">
+          <div class="text-xs text-slate-500 mb-1 uppercase tracking-widest">Průměrná doba prodeje</div>
+          <div class="text-2xl font-bold text-brand-500">28 dní</div>
+        </div>
+        <div class="absolute -top-6 -right-6 bg-white rounded-2xl shadow-xl p-4 border border-slate-100">
+          <div class="text-xs text-slate-500 mb-1 uppercase tracking-widest">Spokojených klientů</div>
+          <div class="text-2xl font-bold text-ink-900">120+</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAGLINE BAND -->
+  <section class="bg-brand-500 text-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-sm md:text-base tracking-widest uppercase font-medium">
+      „Vše je o&nbsp;komunikaci. Garantuji vám, že společně najdeme nejlepší možné řešení."
+    </div>
+  </section>
+
+  <!-- PAIN -->
+  <section id="problemy" class="py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <div class="text-xs font-semibold text-brand-500 uppercase tracking-widest mb-3">Pro koho</div>
+        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-ink-900">Tohle vás zdržuje od prodeje?</h2>
+        <p class="mt-4 text-lg text-slate-600">Vidím to každý den. A přesně proto pracuji jinak než většina kanceláří.</p>
+      </div>
+      <div class="mt-12 grid md:grid-cols-3 gap-6">
+        {pains.map(p => (
+          <div class="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm hover:shadow-lg hover:border-brand-200 transition">
+            <div class="text-4xl mb-4">{p.icon}</div>
+            <h3 class="text-xl font-bold text-ink-900 mb-3">{p.title}</h3>
+            <p class="text-slate-600 leading-relaxed">{p.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="postup" class="py-20 md:py-28 bg-slate-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <div class="text-xs font-semibold text-brand-500 uppercase tracking-widest mb-3">Postup</div>
+        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-ink-900">Jak to u mě funguje</h2>
+        <p class="mt-4 text-lg text-slate-600">Jednoduše. Tři kroky. Žádné překvapení.</p>
+      </div>
+      <div class="mt-12 grid md:grid-cols-3 gap-6">
+        {steps.map(s => (
+          <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100">
+            <div class="text-brand-500 font-mono font-bold text-sm tracking-widest mb-4">{s.n}</div>
+            <h3 class="text-xl font-bold text-ink-900 mb-3">{s.title}</h3>
+            <p class="text-slate-600 leading-relaxed">{s.text}</p>
+          </div>
+        ))}
+      </div>
+      <div class="mt-12 text-center">
+        <a href="/prodej-bytu" class="inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white font-semibold px-7 py-4 rounded-full shadow-lg shadow-brand-500/25 transition tracking-wide">
+          Začít s krokem 1 →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFERENCE -->
+  <section id="reference" class="py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <div class="text-xs font-semibold text-brand-500 uppercase tracking-widest mb-3">Reference</div>
+        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-ink-900">Co o mně říkají klienti</h2>
+        <p class="mt-4 text-lg text-slate-600">Reálné prodeje, reální lidé.</p>
+      </div>
+      <div class="mt-12 grid md:grid-cols-3 gap-6">
+        {refs.map(r => (
+          <figure class="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm">
+            <div class="text-brand-500 text-5xl leading-none mb-4 font-serif">"</div>
+            <blockquote class="text-slate-700 leading-relaxed italic">{r.quote}</blockquote>
+            <figcaption class="mt-6 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-brand-100"></div>
+              <div>
+                <div class="font-semibold text-brand-600 text-sm">{r.name}</div>
+                <div class="text-xs text-slate-500">{r.location}</div>
+              </div>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT IVETA -->
+  <section id="iveta" class="py-20 md:py-28 bg-gradient-to-b from-white to-slate-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-5 gap-12 items-center">
+      <div class="md:col-span-2">
+        <img src="/images/iveta-portrait.jpg" alt="Mgr. Iveta Smolková" class="aspect-square w-full object-cover rounded-3xl shadow-2xl shadow-ink-700/20" width="728" height="728" />
+      </div>
+      <div class="md:col-span-3">
+        <div class="text-xs font-semibold text-brand-500 uppercase tracking-widest mb-3">Vaše realitní makléřka</div>
+        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-ink-900">Mgr. Iveta Smolková</h2>
+        <div class="mt-3 text-sm text-slate-500">
+          Smluvní partner <span class="font-semibold text-slate-700">REALITY PRORADOST s.r.o.</span>
+        </div>
+        <p class="mt-6 text-lg text-slate-700 leading-relaxed">
+          Vše je o&nbsp;komunikaci. Každý člověk je individuální stejně jako vaše potřeby. Přesně tak pracuji. Potřebujete najít vhodné řešení? <strong>Ozvěte se mi.</strong>
+        </p>
+        <p class="mt-4 text-lg text-slate-700 leading-relaxed">
+          Společně se podíváme na to, co pro vás bude nejvýhodnější. Garantuji vám, že společně najdeme nejlepší možné řešení.
+        </p>
+        <ul class="mt-6 space-y-3 text-slate-700">
+          <li class="flex gap-3"><span class="text-brand-500 font-bold">✓</span> Osobní vedení od A do Z, žádný koordinátor</li>
+          <li class="flex gap-3"><span class="text-brand-500 font-bold">✓</span> Tržně ověřené ocenění, ne hádání</li>
+          <li class="flex gap-3"><span class="text-brand-500 font-bold">✓</span> Smlouva s jasnými milníky a možností vystoupit</li>
+          <li class="flex gap-3"><span class="text-brand-500 font-bold">✓</span> Komplet právní servis (advokátní úschova, katastr)</li>
+        </ul>
+        <div class="mt-8 flex flex-col sm:flex-row gap-4">
+          <a href="tel:+420777879317" class="inline-flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600 text-white font-semibold px-7 py-4 rounded-full shadow transition">
+            📞 +420 777 879 317
+          </a>
+          <a href="mailto:iveta.smolkova@email.cz" class="inline-flex items-center justify-center gap-2 bg-white border border-slate-200 hover:border-brand-400 text-ink-900 font-semibold px-7 py-4 rounded-full transition">
+            ✉️ iveta.smolkova@email.cz
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-20 md:py-28">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto">
+        <div class="text-xs font-semibold text-brand-500 uppercase tracking-widest mb-3">FAQ</div>
+        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-ink-900">Časté dotazy</h2>
+        <p class="mt-4 text-lg text-slate-600">Nenašli jste odpověď? Napište mi na <a href="mailto:iveta.smolkova@email.cz" class="text-brand-500 underline">iveta.smolkova@email.cz</a>.</p>
+      </div>
+      <div class="mt-12 space-y-4">
+        {faqs.map(f => (
+          <details class="group bg-white border border-slate-100 rounded-2xl p-6 shadow-sm open:shadow-md hover:border-brand-200 transition">
+            <summary class="flex justify-between items-center cursor-pointer font-semibold text-ink-900 list-none">
+              <span>{f.q}</span>
+              <span class="text-brand-500 text-2xl group-open:rotate-45 transition">+</span>
+            </summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="py-20 md:py-28 bg-brand-500 text-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight">Připraveni na první krok?</h2>
+      <p class="mt-6 text-lg md:text-xl text-brand-50 leading-relaxed">
+        Vyplňte krátký dotazník a do 24 hodin vám zavolám s individuální nabídkou. Bez závazku.
+      </p>
+      <a href="/prodej-bytu" class="mt-10 inline-flex items-center gap-2 bg-white text-brand-700 hover:bg-brand-50 font-bold px-8 py-5 rounded-full text-lg shadow-2xl shadow-brand-900/30 transition tracking-wide">
+        Chci ocenit svou nemovitost →
+      </a>
+      <div class="mt-6 text-sm text-brand-100">nebo zavolejte přímo na <a href="tel:+420777879317" class="underline font-semibold">+420 777 879 317</a></div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
