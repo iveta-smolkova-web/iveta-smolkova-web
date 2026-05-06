@@ -47,16 +47,26 @@ const hasGoogle = !!(GA4_ID || GADS_ID);
 )}
 
 {SKLIK_ID && (
-  <script async src={`https://c.imedia.cz/js/retargeting.js?id=${SKLIK_ID}`}></script>
+  <>
+    <script type="text/javascript" src="https://c.seznam.cz/js/rc.js"></script>
+    <script set:html={`
+      window.sznIVA = window.sznIVA || {};
+      window.sznIVA.IS = window.sznIVA.IS || { updateIdentities: function(){} };
+      try { window.sznIVA.IS.updateIdentities({ eid: null }); } catch(e) {}
+      var retargetingConf = { rtgId: ${SKLIK_ID}, consent: null };
+      if (window.rc && window.rc.retargetingHit) window.rc.retargetingHit(retargetingConf);
+      else { document.addEventListener('DOMContentLoaded', function() { if (window.rc && window.rc.retargetingHit) window.rc.retargetingHit(retargetingConf); }); }
+    `} />
+  </>
 )}
 
 {conversion && (
   <script set:html={`
     window.addEventListener('load', function() {
       ${GA4_ID ? `if (typeof gtag !== 'undefined') gtag('event', 'generate_lead', { 'event_category': 'quiz', 'event_label': 'prodej-bytu' });` : ''}
-      ${GADS_ID && GADS_LABEL ? `if (typeof gtag !== 'undefined') gtag('event', 'conversion', { 'send_to': '${GADS_ID}/${GADS_LABEL}' });` : ''}
+      ${GADS_ID && GADS_LABEL ? `if (typeof gtag !== 'undefined') gtag('event', 'conversion', { 'send_to': '${GADS_ID}/${GADS_LABEL}', 'value': 500.0, 'currency': 'CZK' });` : ''}
       ${META_PIXEL_ID ? `if (typeof fbq !== 'undefined') fbq('track', 'Lead');` : ''}
-      ${SKLIK_ID ? `if (typeof seznam_retargeting_id !== 'undefined') { var s=document.createElement('script'); s.src='https://c.imedia.cz/js/conversion.js?id=${SKLIK_ID}&value=500'; document.head.appendChild(s); }` : ''}
+      ${SKLIK_ID ? `if (window.rc && window.rc.conversionHit) { window.rc.conversionHit({ id: ${SKLIK_ID}, value: 500, consent: null }); }` : ''}
     });
   `} />
 )}
