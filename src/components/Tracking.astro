@@ -1,0 +1,62 @@
+---
+// Tracking script — GA4 + Google Ads + Sklik + Meta Pixel
+// Vše se aktivuje jen pokud jsou nastavené env vars v Netlify.
+//
+// Env vars (Netlify → Site settings → Environment variables):
+//   PUBLIC_GA4_ID                    — např. "G-XXXXXXXXXX" (z analytics.google.com)
+//   PUBLIC_GADS_ID                   — např. "AW-1234567890" (z Google Ads konverze)
+//   PUBLIC_GADS_CONVERSION_LABEL     — např. "abc123XYZ" (label z konverzní akce)
+//   PUBLIC_META_PIXEL_ID             — 15-16místné číslo (z Meta Events Manager)
+//   PUBLIC_SKLIK_ID                  — Sklik retargeting ID (z Sklik účtu)
+//
+// Props:
+//   conversion (boolean) — pokud true, vystřelí konverzní event (na /dekujeme)
+export interface Props {
+  conversion?: boolean;
+}
+const { conversion = false } = Astro.props;
+
+const GA4_ID = import.meta.env.PUBLIC_GA4_ID;
+const GADS_ID = import.meta.env.PUBLIC_GADS_ID;
+const GADS_LABEL = import.meta.env.PUBLIC_GADS_CONVERSION_LABEL;
+const META_PIXEL_ID = import.meta.env.PUBLIC_META_PIXEL_ID;
+const SKLIK_ID = import.meta.env.PUBLIC_SKLIK_ID;
+
+const hasGoogle = !!(GA4_ID || GADS_ID);
+---
+
+{hasGoogle && (
+  <>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID || GADS_ID}`}></script>
+    <script set:html={`
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      ${GA4_ID ? `gtag('config', '${GA4_ID}', { 'anonymize_ip': true });` : ''}
+      ${GADS_ID ? `gtag('config', '${GADS_ID}');` : ''}
+    `} />
+  </>
+)}
+
+{META_PIXEL_ID && (
+  <script set:html={`
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '${META_PIXEL_ID}');
+    fbq('track', 'PageView');
+  `} />
+)}
+
+{SKLIK_ID && (
+  <script async src={`https://c.imedia.cz/js/retargeting.js?id=${SKLIK_ID}`}></script>
+)}
+
+{conversion && (
+  <script set:html={`
+    window.addEventListener('load', function() {
+      ${GA4_ID ? `if (typeof gtag !== 'undefined') gtag('event', 'generate_lead', { 'event_category': 'quiz', 'event_label': 'prodej-bytu' });` : ''}
+      ${GADS_ID && GADS_LABEL ? `if (typeof gtag !== 'undefined') gtag('event', 'conversion', { 'send_to': '${GADS_ID}/${GADS_LABEL}' });` : ''}
+      ${META_PIXEL_ID ? `if (typeof fbq !== 'undefined') fbq('track', 'Lead');` : ''}
+      ${SKLIK_ID ? `if (typeof seznam_retargeting_id !== 'undefined') { var s=document.createElement('script'); s.src='https://c.imedia.cz/js/conversion.js?id=${SKLIK_ID}&value=500'; document.head.appendChild(s); }` : ''}
+    });
+  `} />
+)}
