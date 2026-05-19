@@ -1,0 +1,226 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const title = "Pomáhám lidem s pronájmem | Mgr. Iveta Smolková";
+const description = "Pronajmu váš byt v Brně bez stresu z neplatičů a problémových nájemníků. Mgr. Iveta Smolková, 10+ let zkušeností v Brně, Olomouci a Zlíně.";
+
+const faqs = [
+  { q: 'Kolik stojí vaše služba?', a: 'Provize je 1× měsíční nájem + DPH, splatná po podpisu smlouvy s nájemníkem. Konzultace, tržní odhad i příprava jsou zdarma — platíte až za výsledek.' },
+  { q: 'Jak prověřujete nájemníky?', a: 'Standardně kontroluji insolvenční rejstřík (justice.cz), registr dlužníků SOLUS, pracovní smlouvu a aspoň jednu referenci od předchozího pronajímatele. U OSVČ navíc daňové přiznání. Bez kompletního screeningu nikomu nepředávám klíče.' },
+  { q: 'Co když nájemník přestane platit?', a: 'Smlouva má jasný platební kalendář, sankci za prodlení a ošetřuje výpovědní důvody dle NOZ §2291. Pokud k výpadku dojde, asistuji u upomínky, výzvy a případné výpovědi. Nemůžu garantovat, že k tomu nedojde — ale můžu garantovat, že budete mít v ruce smlouvu, která drží u soudu.' },
+  { q: 'Pronajímáte i mimo Brno, Olomouc a Zlín?', a: 'Primárně se zaměřuji na tato tři města a okolí (cca 30 km). Pro lokality dál spolupracuji s prověřenými kolegy — ráda vás propojím, pokud spadáte mimo můj záběr.' },
+  { q: 'Jak dlouho trvá najít nájemníka?', a: 'Medián je 12 dní od inzerátu po podepsanou smlouvu. Závisí to na lokalitě, stavu a tržní ceně — pokud byt nasadíme správně, jde to rychle. Nepředpokládám výpadky delší než 4 týdny.' },
+  { q: 'Mohu spolupráci kdykoli ukončit?', a: 'Ano. Smlouva o zprostředkování je výhradní na dobu, kterou si dohodneme (typicky 3 měsíce). Pokud nedojde k pronájmu, nic neplatíte.' },
+  { q: 'Spravujete byt i po podpisu nájemní smlouvy?', a: 'Pro klienty v zahraničí nebo bez času nabízím volitelnou měsíční správu (8–12 % nájmu) — fotoreporty, asistence při opravách, komunikace s nájemníkem, daňové podklady.' },
+  { q: 'Co když mám už nájemníka, ale špatně to běží?', a: 'Pomáhám i v rozjetých situacích — od přepracování smlouvy přes asistenci u neplatícího nájemníka po předání bytu novému zájemci. Stačí napsat e-mail nebo zavolat.' },
+];
+---
+
+<Layout title={title} description={description}>
+  <Nav />
+
+  <section class="relative overflow-hidden bg-gradient-to-b from-brand-50 via-white to-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-7">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-100 text-brand-700 text-xs font-semibold tracking-wide mb-6">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+            Brno · Olomouc · Zlín · 10+ let zkušeností
+          </div>
+          <h1 class="font-display text-5xl md:text-6xl lg:text-[60px] font-extrabold tracking-tight leading-[1.05] text-ink-900">
+            Pomáhám lidem<br>s pronájmem
+          </h1>
+          <p class="mt-6 text-lg md:text-xl text-slate-600 leading-relaxed max-w-2xl">
+            Pronajmu váš byt v Brně bez stresu z neplatičů a problémových nájemníků. Mgr. Iveta Smolková, 10+ let zkušeností v Brně, Olomouci a Zlíně.
+          </p>
+          <div class="mt-9 flex flex-col sm:flex-row gap-3">
+            <a class="inline-flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600 text-white font-semibold px-7 py-4 rounded-full shadow-lg shadow-brand-500/25 transition tracking-wide" href="#kontakt">Spočítat tržní nájem zdarma <span>→</span></a>
+            <a href="tel:+420777879317" class="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 border border-slate-200 text-ink-900 font-semibold px-7 py-4 rounded-full shadow-sm transition">📞 +420 777 879 317</a>
+          </div>
+          <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-slate-600">
+            <div class="flex items-center gap-2"><span class="text-brand-500 font-bold">✓</span> Konzultace zdarma</div>
+            <div class="flex items-center gap-2"><span class="text-brand-500 font-bold">✓</span> Provize až po podpisu</div>
+            <div class="flex items-center gap-2"><span class="text-brand-500 font-bold">✓</span> Medián 12 dní do nájemníka</div>
+          </div>
+        </div>
+        <div class="lg:col-span-5">
+          <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-7 lg:p-8">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-14 h-14 rounded-full bg-brand-100 grid place-items-center text-brand-700 font-display font-extrabold text-xl">IS</div>
+              <div>
+                <div class="font-semibold">Mgr. Iveta Smolková</div>
+                <div class="text-sm text-slate-500">Realitní makléřka</div>
+              </div>
+            </div>
+            <div class="space-y-3 text-sm">
+              <div class="flex justify-between border-b border-slate-100 pb-2.5"><span class="text-slate-600">Pronajatých bytů</span><span class="font-semibold">400+</span></div>
+              <div class="flex justify-between border-b border-slate-100 pb-2.5"><span class="text-slate-600">Medián doby pronájmu</span><span class="font-semibold">12 dní</span></div>
+              <div class="flex justify-between border-b border-slate-100 pb-2.5"><span class="text-slate-600">Nájemníků platících včas</span><span class="font-semibold">95 %</span></div>
+              <div class="flex justify-between border-b border-slate-100 pb-2.5"><span class="text-slate-600">Provize</span><span class="font-semibold">1× měsíční nájem</span></div>
+              <div class="flex justify-between"><span class="text-slate-600">Konzultace</span><span class="font-semibold text-brand-700">Zdarma</span></div>
+            </div>
+            <div class="mt-6 p-4 bg-brand-50 border border-brand-200 rounded-2xl text-sm text-ink-900 leading-snug">
+              <strong>Co je u mě jiné:</strong> každý zájemce projde insolvencí, SOLUSem a referencí. Smlouva má fotodokumentaci, inflační doložku a inventarizační protokol.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="problemy" class="py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <div class="text-sm font-semibold text-brand-600 uppercase tracking-[0.2em] mb-3">Pro koho</div>
+        <h2 class="font-display text-3xl md:text-5xl font-extrabold tracking-tight text-ink-900 leading-tight">Tohle vás zdržuje od pronájmu?</h2>
+        <p class="mt-4 text-lg text-slate-600">Po 10+ letech a 400+ pronájmech znám tři situace, ve kterých se pronajímatelé nejčastěji zaseknou. Pokud se v nich poznáváte — můžu pomoct.</p>
+      </div>
+      <div class="mt-14 grid md:grid-cols-3 gap-6">
+        <div class="rounded-3xl border border-slate-200 bg-white p-8 hover:border-brand-200 hover:shadow-lg transition-all">
+          <div class="w-12 h-12 rounded-2xl bg-brand-100 grid place-items-center text-brand-600 mb-5"><span class="font-display font-bold text-xl">!</span></div>
+          <h3 class="font-display text-xl font-bold leading-snug mb-3 text-ink-900">Nemám čas zvedat telefon zájemcům</h3>
+          <p class="text-slate-600 leading-relaxed">Inzerát, prohlídky, screening, smlouva, předání. Práce, rodina, víkendy — kdy na to mám?</p>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-white p-8 hover:border-brand-200 hover:shadow-lg transition-all">
+          <div class="w-12 h-12 rounded-2xl bg-brand-100 grid place-items-center text-brand-600 mb-5"><span class="font-display font-bold text-xl">!</span></div>
+          <h3 class="font-display text-xl font-bold leading-snug mb-3 text-ink-900">Bojím se neplatičů a soudů</h3>
+          <p class="text-slate-600 leading-relaxed">4 měsíce výpadku = přes 100 000 Kč v háji. Bez důsledného screeningu je to ruská ruleta — a tu nechci hrát.</p>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-white p-8 hover:border-brand-200 hover:shadow-lg transition-all">
+          <div class="w-12 h-12 rounded-2xl bg-brand-100 grid place-items-center text-brand-600 mb-5"><span class="font-display font-bold text-xl">!</span></div>
+          <h3 class="font-display text-xl font-bold leading-snug mb-3 text-ink-900">Pronájem už mě jednou zklamal</h3>
+          <p class="text-slate-600 leading-relaxed">Špatná smlouva, problémový nájemník, sliby bez výsledku. Tentokrát to chci udělat pořádně.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="postup" class="py-20 md:py-28 bg-slate-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <div class="text-sm font-semibold text-brand-600 uppercase tracking-[0.2em] mb-3">Jak to funguje</div>
+        <h2 class="font-display text-3xl md:text-5xl font-extrabold tracking-tight text-ink-900 leading-tight">Jak to u mě funguje</h2>
+        <p class="mt-4 text-lg text-slate-600">Žádné kavárny, žádný tlak. Začneme telefonem, který mi pomůže pochopit vaši situaci.</p>
+      </div>
+      <div class="mt-14 grid md:grid-cols-3 gap-6">
+        <div class="rounded-3xl bg-white border border-slate-200 p-8">
+          <div class="w-12 h-12 rounded-full bg-brand-500 text-white grid place-items-center font-display font-bold text-xl shadow-md mb-5">1</div>
+          <h3 class="font-display text-xl font-bold leading-snug mb-3 text-ink-900">Zavoláte mi nebo napíšete</h3>
+          <p class="text-slate-600 leading-relaxed">Telefonem nebo e-mailem. 10 minut, projdeme detaily a domluvíme se na nezávazné konzultaci.</p>
+        </div>
+        <div class="rounded-3xl bg-white border border-slate-200 p-8">
+          <div class="w-12 h-12 rounded-full bg-brand-500 text-white grid place-items-center font-display font-bold text-xl shadow-md mb-5">2</div>
+          <h3 class="font-display text-xl font-bold leading-snug mb-3 text-ink-900">Tržní odhad nájmu</h3>
+          <p class="text-slate-600 leading-relaxed">Spočítám realistický nájem pro váš byt podle lokality, dispozice a stavu. Bez závazku.</p>
+        </div>
+        <div class="rounded-3xl bg-white border border-slate-200 p-8">
+          <div class="w-12 h-12 rounded-full bg-brand-500 text-white grid place-items-center font-display font-bold text-xl shadow-md mb-5">3</div>
+          <h3 class="font-display text-xl font-bold leading-snug mb-3 text-ink-900">Najdu prověřené nájemníky</h3>
+          <p class="text-slate-600 leading-relaxed">Inzerát, prohlídky, screening (insolvence, SOLUS, reference), smlouva s ochrannými klauzulemi. Medián 12 dní.</p>
+        </div>
+      </div>
+      <div class="mt-14 text-center">
+        <a class="inline-flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600 text-white font-semibold px-7 py-4 rounded-full shadow-lg shadow-brand-500/25 transition tracking-wide" href="#kontakt">Začít s krokem 1 <span>→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="reference" class="py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <div class="text-sm font-semibold text-brand-600 uppercase tracking-[0.2em] mb-3">Reference</div>
+        <h2 class="font-display text-3xl md:text-5xl font-extrabold tracking-tight text-ink-900 leading-tight">Co o mně říkají klienti</h2>
+      </div>
+      <div class="mt-14 grid md:grid-cols-3 gap-6">
+        <figure class="rounded-3xl bg-white border border-slate-200 p-8 hover:border-brand-200 transition">
+          <div class="text-brand-500 text-3xl leading-none mb-3 font-display">"</div>
+          <blockquote class="text-ink-900 leading-relaxed">Iveta nám pronajala byt v Olomouci-centru za 11 dní a od té doby je 0 telefonátů. Konečně to dělá někdo, kdo to umí.</blockquote>
+          <figcaption class="mt-6 pt-5 border-t border-slate-100 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-brand-100 text-brand-700 grid place-items-center font-semibold text-sm">MN</div>
+            <div class="text-sm"><div class="font-semibold">Marie N.</div><div class="text-slate-500">Zděděný 3+1, Olomouc-centrum</div></div>
+          </figcaption>
+        </figure>
+        <figure class="rounded-3xl bg-white border border-slate-200 p-8 hover:border-brand-200 transition">
+          <div class="text-brand-500 text-3xl leading-none mb-3 font-display">"</div>
+          <blockquote class="text-ink-900 leading-relaxed">Pracuju v IT v Praze, byt v Brně. Dříve jsem to zkoušel sám — neplatič a 4 měsíce výpadku. Iveta vyřídí všechno, vy jen podepisujete.</blockquote>
+          <figcaption class="mt-6 pt-5 border-t border-slate-100 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-brand-100 text-brand-700 grid place-items-center font-semibold text-sm">PD</div>
+            <div class="text-sm"><div class="font-semibold">Pavel D.</div><div class="text-slate-500">Investiční 2+kk, Brno-Komín</div></div>
+          </figcaption>
+        </figure>
+        <figure class="rounded-3xl bg-white border border-slate-200 p-8 hover:border-brand-200 transition">
+          <div class="text-brand-500 text-3xl leading-none mb-3 font-display">"</div>
+          <blockquote class="text-ink-900 leading-relaxed">Stěhoval jsem se na 2 roky do Curychu. Iveta zařídila smlouvu na dálku, e-podpis, kvartální fotoreporty. Profesionalita.</blockquote>
+          <figcaption class="mt-6 pt-5 border-t border-slate-100 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-brand-100 text-brand-700 grid place-items-center font-semibold text-sm">TH</div>
+            <div class="text-sm"><div class="font-semibold">Tomáš H.</div><div class="text-slate-500">2+kk, Brno-Veveří</div></div>
+          </figcaption>
+        </figure>
+      </div>
+      <p class="mt-8 text-xs text-slate-500 text-center">Reference jsou autentické. Kompletní jména a kontakty na vyžádání po vzájemném souhlasu.</p>
+    </div>
+  </section>
+
+  <section id="iveta" class="py-20 md:py-28 bg-gradient-to-b from-white to-slate-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-7">
+          <div class="text-sm font-semibold text-brand-600 uppercase tracking-[0.2em] mb-3">O mně</div>
+          <h2 class="font-display text-3xl md:text-5xl font-extrabold tracking-tight text-ink-900 leading-tight">Mgr. Iveta Smolková</h2>
+          <div class="mt-6 space-y-4 text-slate-600 leading-relaxed text-lg">
+            <p>Začala jsem jako realitní makléřka před více než 10 lety v Brně. Dnes pracuji s klienty v Brně, Olomouci a Zlíně — od investorů s portfoliem 5 bytů přes klienty s jediným zděděným bytem až po expaty, kterým se z bytu stal pasivní příjem na dobu pobytu v zahraničí.</p>
+            <p>Co dělám pořád stejně: <strong class="text-ink-900">každého zájemce prověřuji v insolvenci, SOLUSu a u předchozího pronajímatele</strong>. Smlouvu mám připravenou tak, aby chránila majitele i nájemníka — fotodokumentace, inflační doložka, jasná pravidla pro opravy.</p>
+            <p>Co nedělám: <strong class="text-ink-900">negarantuji nemožné</strong>. Trh je trh, lidé jsou lidé. Garantuji ale poctivý proces, čísla, která mám pod kontrolou, a smlouvu, která drží u soudu.</p>
+          </div>
+          <div class="mt-10 grid grid-cols-3 gap-4 max-w-md">
+            <div class="bg-white rounded-2xl border border-slate-200 p-5 text-center"><div class="font-display text-3xl font-extrabold text-brand-600">10+</div><div class="text-xs text-slate-500 mt-1">let praxe</div></div>
+            <div class="bg-white rounded-2xl border border-slate-200 p-5 text-center"><div class="font-display text-3xl font-extrabold text-brand-600">400+</div><div class="text-xs text-slate-500 mt-1">pronajatých bytů</div></div>
+            <div class="bg-white rounded-2xl border border-slate-200 p-5 text-center"><div class="font-display text-3xl font-extrabold text-brand-600">3</div><div class="text-xs text-slate-500 mt-1">města</div></div>
+          </div>
+        </div>
+        <div class="lg:col-span-5">
+          <div class="rounded-3xl overflow-hidden bg-white border border-slate-200 shadow-xl aspect-[4/5]">
+            <img src="/images/iveta-portrait.jpg" alt="Mgr. Iveta Smolková" class="w-full h-full" style="object-fit:cover;object-position:center top">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="py-20 md:py-28">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div>
+        <div class="text-sm font-semibold text-brand-600 uppercase tracking-[0.2em] mb-3">FAQ</div>
+        <h2 class="font-display text-3xl md:text-5xl font-extrabold tracking-tight text-ink-900 leading-tight">Časté dotazy</h2>
+      </div>
+      <div class="mt-12 space-y-3">
+        {faqs.map((f) => (
+          <details class="group rounded-2xl border border-slate-200 bg-white open:border-brand-300 open:shadow-md transition">
+            <summary class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer list-none font-semibold text-ink-900">
+              <span>{f.q}</span>
+              <span class="w-8 h-8 rounded-full bg-slate-100 grid place-items-center text-slate-500 group-open:bg-brand-500 group-open:text-white group-open:rotate-45 transition-all text-xl leading-none flex-shrink-0">+</span>
+            </summary>
+            <div class="px-6 pb-6 text-slate-600 leading-relaxed">{f.a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt" class="relative overflow-hidden bg-ink-900 text-white">
+    <div class="absolute inset-0 bg-gradient-to-br from-brand-700/40 via-ink-900 to-ink-900"></div>
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center">
+      <h2 class="font-display text-3xl md:text-5xl font-extrabold tracking-tight max-w-2xl mx-auto leading-[1.1]">Připraveni na první krok?</h2>
+      <p class="mt-5 text-lg text-slate-300 max-w-xl mx-auto">Zavolejte mi nebo napište. Do 24 hodin se vám ozvu s tržním odhadem nájmu.</p>
+      <div class="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="tel:+420777879317" class="inline-flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600 text-white font-semibold px-7 py-4 rounded-full shadow-lg shadow-brand-500/25 transition tracking-wide">📞 +420 777 879 317</a>
+        <a href="mailto:iveta.smolkova@email.cz" class="inline-flex items-center justify-center gap-2 bg-transparent hover:bg-white/10 border border-white/30 text-white font-semibold px-7 py-4 rounded-full transition">✉️ iveta.smolkova@email.cz</a>
+      </div>
+      <p class="mt-6 text-sm text-slate-400">Konzultace je zdarma. Provize platíte až po podpisu smlouvy s nájemníkem.</p>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

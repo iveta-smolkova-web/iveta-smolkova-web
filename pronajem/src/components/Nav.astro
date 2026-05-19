@@ -1,0 +1,23 @@
+---
+const { current = 'home' } = Astro.props;
+---
+<header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-slate-100">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav class="flex items-center justify-between h-20">
+      <a href="/" class="flex items-center gap-2">
+        <img src="/images/iveta-logo-full.png" alt="Mgr. Iveta Smolková — realitní služby" class="h-12 w-auto" width="240" height="99" />
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-700">
+        <a href="/#problemy" class="hover:text-brand-500 transition">Pro koho</a>
+        <a href="/#postup" class="hover:text-brand-500 transition">Jak to funguje</a>
+        <a href="/#reference" class="hover:text-brand-500 transition">Reference</a>
+        <a href="/#iveta" class="hover:text-brand-500 transition">O mně</a>
+        <a href="/#faq" class="hover:text-brand-500 transition">FAQ</a>
+      </div>
+      <a href="#kontakt" class="inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white font-semibold px-5 py-2.5 rounded-full text-sm shadow-sm transition tracking-wide">
+        Spočítat nájem
+        <span aria-hidden>→</span>
+      </a>
+    </nav>
+  </div>
+</header>
