@@ -1,0 +1,49 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const title = "Děkujeme — ozvu se do 24 hodin | Mgr. Iveta Smolková";
+const description = "Vaše poptávka pro byla odeslána. Iveta vám zavolá do 24 hodin s individuální nabídkou.";
+---
+
+<Layout title={title} description={description} conversion={true}>
+  <Nav />
+
+  <section class="py-20 md:py-32">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-green-100 text-green-600 text-4xl mb-8">
+        ✓
+      </div>
+      <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900">
+        Děkujeme!
+      </h1>
+      <p class="mt-6 text-xl text-slate-600">
+        Vaše poptávka dorazila. <strong>Zavolám vám do 24 hodin</strong> z čísla +420 777 879 317.
+      </p>
+      <div class="mt-10 bg-brand-50 border border-brand-100 rounded-2xl p-8 text-left">
+        <h2 class="text-xl font-bold text-slate-900 mb-4">Než vám zavolám, můžete:</h2>
+        <ul class="space-y-3 text-slate-700">
+          <li class="flex gap-3">
+            <span class="text-brand-500 font-bold">1.</span>
+            <span><strong>Pořídit si fotky bytu.</strong> Stačí mobilem, vodorovně. Pomůže to při tržním odhadu i následném inzerátu pro kupce.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-brand-500 font-bold">2.</span>
+            <span><strong>Připravit si list vlastnictví</strong> — najdete jej zdarma na <a href="https://nahlizenidokn.cuzk.cz" target="_blank" rel="noopener" class="text-brand-500 underline">nahlizenidokn.cuzk.cz</a>.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-brand-500 font-bold">3.</span>
+            <span><strong>Sepsat si otázky.</strong> Co vás trápí, na čem vám záleží, co očekáváte od prodeje. Probereme.</span>
+          </li>
+        </ul>
+      </div>
+      <p class="mt-10 text-slate-500 text-sm">
+        Nemůžete čekat? Zavolejte přímo: <a href="tel:+420777879317" class="text-brand-500 font-semibold">+420 777 879 317</a>
+      </p>
+      <a href="/" class="mt-10 inline-block text-slate-500 hover:text-slate-900 underline text-sm">← Zpět na úvod</a>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

@@ -1,0 +1,226 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const title = "Stěhujete se? Prodej bytu za vás | Mgr. Iveta Smolková";
+const description = "Stěhujete se a potřebujete prodat byt? Postarám se o vše — od ocenění po předání. Mgr. Iveta Smolková, 10+ let v Brně, Olomouci a Zlíně.";
+
+const faqs = [
+  { q: 'Kolik stojí vaše služba?', a: 'Provize je 2–4 % z prodejní ceny + DPH, splatná po podpisu kupní smlouvy. Konzultace, tržní odhad i příprava marketingu jsou zdarma — platíte až za výsledek.' },
+  { q: 'Jak dlouho trvá prodej?', a: 'Medián 45 dní od inzerce po podpis smlouvy. Závisí na lokalitě, ceně a stavu nemovitosti. Pokud potřebujete rychleji, mám síť investorů, kteří kupují i ve dnech.' },
+  { q: 'Co pokud nemám čas chodit na prohlídky?', a: 'Postarám se o vše. Plnou moc k provádění prohlídek, klíče, koordinaci se zájemci. Vy jen schvalujete cenovou nabídku a podepisujete smlouvu.' },
+  { q: 'Můžete prodávat na dálku?', a: 'Ano. Pracuji běžně s klienty v zahraničí i jinde v ČR. Plná moc, e-podpis smluv, kvartální reporty. Můžete být fyzicky kdekoli.' },
+  { q: 'Pomáháte s daněmi a právními věcmi?', a: 'Ano. Spolupracuji s advokátní kanceláří (smlouvy, ochrana proti rizikům) a daňovou poradkyní (řešení daně z příjmu při prodeji, výjimky, opt-out z DPH). Vše v balíčku.' },
+  { q: 'Co když je byt v dědictví / v dluzích / SJM?', a: 'Žádný problém. Pomáhám s prodejem v komplikovaných situacích — dědické řízení, exekuce, společné jmění manželů, výmaz věcných břemen. Praxe 10+ let.' },
+  { q: 'Mohu spolupráci kdykoli ukončit?', a: 'Ano. Smlouva o zprostředkování je výhradní na dobu, kterou si dohodneme (typicky 3–6 měsíců). Pokud nedojde k prodeji, nic neplatíte.' },
+  { q: 'Pracujete i mimo Brno, Olomouc a Zlín?', a: 'Primárně se zaměřuji na tato tři města a okolí (cca 30 km). Pro lokality dál spolupracuji s prověřenými kolegy — ráda vás propojím.' },
+];
+---
+
+<Layout title={title} description={description}>
+  <Nav />
+
+  <section class="relative overflow-hidden bg-gradient-to-b from-brand-50 via-white to-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-7">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-100 text-brand-700 text-xs font-semibold tracking-wide mb-6">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+            Brno · Olomouc · Zlín · 10+ let zkušeností
+          </div>
+          <h1 class="font-display text-5xl md:text-6xl lg:text-[60px] font-extrabold tracking-tight leading-[1.05] text-ink-900">
+            Stěhujete se?<br>Prodej bytu za vás
+          </h1>
+          <p class="mt-6 text-lg md:text-xl text-slate-600 leading-relaxed max-w-2xl">
+            Stěhování je dost stresu samo o sobě. Prodej bytu nechte na mně — od ocenění po předání novému majiteli. Pracuju i na dálku, e-podpis smluv, fotoreporty.
+          </p>
+          <div class="mt-9 flex flex-col sm:flex-row gap-3">
+            <a class="inline-flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600 text-white font-semibold px-7 py-4 rounded-full shadow-lg shadow-brand-500/25 transition tracking-wide" href="/prodej-bytu">Vypočítat cenu bytu zdarma <span>→</span></a>
+            <a href="tel:+420777879317" class="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 border border-slate-200 text-ink-900 font-semibold px-7 py-4 rounded-full shadow-sm transition">📞 +420 777 879 317</a>
+          </div>
+          <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-slate-600">
+            <div class="flex items-center gap-2"><span class="text-brand-500 font-bold">✓</span> Konzultace zdarma</div>
+            <div class="flex items-center gap-2"><span class="text-brand-500 font-bold">✓</span> Provize až po prodeji</div>
+            <div class="flex items-center gap-2"><span class="text-brand-500 font-bold">✓</span> Medián 45 dní do podpisu</div>
+          </div>
+        </div>
+        <div class="lg:col-span-5">
+          <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-7 lg:p-8">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-14 h-14 rounded-full bg-brand-100 grid place-items-center text-brand-700 font-display font-extrabold text-xl">IS</div>
+              <div>
+                <div class="font-semibold">Mgr. Iveta Smolková</div>
+                <div class="text-sm text-slate-500">Realitní makléřka</div>
+              </div>
+            </div>
+            <div class="space-y-3 text-sm">
+              <div class="flex justify-between border-b border-slate-100 pb-2.5"><span class="text-slate-600">Prodaných bytů</span><span class="font-semibold">400+</span></div>
+              <div class="flex justify-between border-b border-slate-100 pb-2.5"><span class="text-slate-600">Medián doby prodeje</span><span class="font-semibold">45 dní</span></div>
+              <div class="flex justify-between border-b border-slate-100 pb-2.5"><span class="text-slate-600">Spokojených klientů</span><span class="font-semibold">98 %</span></div>
+              <div class="flex justify-between border-b border-slate-100 pb-2.5"><span class="text-slate-600">Provize</span><span class="font-semibold">2–4 % z ceny</span></div>
+              <div class="flex justify-between"><span class="text-slate-600">Konzultace</span><span class="font-semibold text-brand-700">Zdarma</span></div>
+            </div>
+            <div class="mt-6 p-4 bg-brand-50 border border-brand-200 rounded-2xl text-sm text-ink-900 leading-snug">
+              <strong>Co je u mě jiné:</strong> profesionální fotky, home staging, ověření kupců přes insolvenci a SOLUS, právní balíček v ceně.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="problemy" class="py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <div class="text-sm font-semibold text-brand-600 uppercase tracking-[0.2em] mb-3">Pro koho</div>
+        <h2 class="font-display text-3xl md:text-5xl font-extrabold tracking-tight text-ink-900 leading-tight">Tohle vás zdržuje od prodeje?</h2>
+        <p class="mt-4 text-lg text-slate-600">Po 10+ letech a 400+ prodejích vím, že stěhování plus prodej najednou bývá noční můra. Pomůžu vám rozplést to tak, ať můžete v klidu balit.</p>
+      </div>
+      <div class="mt-14 grid md:grid-cols-3 gap-6">
+        <div class="rounded-3xl border border-slate-200 bg-white p-8 hover:border-brand-200 hover:shadow-lg transition-all">
+          <div class="w-12 h-12 rounded-2xl bg-brand-100 grid place-items-center text-brand-600 mb-5"><span class="font-display font-bold text-xl">!</span></div>
+          <h3 class="font-display text-xl font-bold leading-snug mb-3 text-ink-900">Nemám čas — stěhujeme se</h3>
+          <p class="text-slate-600 leading-relaxed">Krabice, návštěvy nového bydliště, hledání školy pro děti. Ještě k tomu inzerát, prohlídky a smlouva? Nezvládám.</p>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-white p-8 hover:border-brand-200 hover:shadow-lg transition-all">
+          <div class="w-12 h-12 rounded-2xl bg-brand-100 grid place-items-center text-brand-600 mb-5"><span class="font-display font-bold text-xl">!</span></div>
+          <h3 class="font-display text-xl font-bold leading-snug mb-3 text-ink-900">Termín stěhování tlačí</h3>
+          <p class="text-slate-600 leading-relaxed">Musíme být v novém bydlišti do data X. Potřebuju prodat dřív, nebo aspoň mít jistotu kupce.</p>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-white p-8 hover:border-brand-200 hover:shadow-lg transition-all">
+          <div class="w-12 h-12 rounded-2xl bg-brand-100 grid place-items-center text-brand-600 mb-5"><span class="font-display font-bold text-xl">!</span></div>
+          <h3 class="font-display text-xl font-bold leading-snug mb-3 text-ink-900">Bojím se prodávat na dálku</h3>
+          <p class="text-slate-600 leading-relaxed">Až budu v nové lokalitě, nemůžu osobně řešit prohlídky a podpisy. Potřebuju někoho komu věřím.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="postup" class="py-20 md:py-28 bg-slate-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <div class="text-sm font-semibold text-brand-600 uppercase tracking-[0.2em] mb-3">Jak to funguje</div>
+        <h2 class="font-display text-3xl md:text-5xl font-extrabold tracking-tight text-ink-900 leading-tight">Jak to u mě funguje</h2>
+        <p class="mt-4 text-lg text-slate-600">Žádné kavárny, žádný tlak. Začneme krátkým dotazníkem (60 vteřin), který mi pomůže pochopit vaši situaci. Pak teprve mluvíme.</p>
+      </div>
+      <div class="mt-14 grid md:grid-cols-3 gap-6">
+        <div class="rounded-3xl bg-white border border-slate-200 p-8">
+          <div class="w-12 h-12 rounded-full bg-brand-500 text-white grid place-items-center font-display font-bold text-xl shadow-md mb-5">1</div>
+          <h3 class="font-display text-xl font-bold leading-snug mb-3 text-ink-900">Vyplníte krátký dotazník</h3>
+          <p class="text-slate-600 leading-relaxed">60 vteřin, 8 otázek. Zjistím vaši situaci, lokalitu, dispozici a co od prodeje očekáváte.</p>
+        </div>
+        <div class="rounded-3xl bg-white border border-slate-200 p-8">
+          <div class="w-12 h-12 rounded-full bg-brand-500 text-white grid place-items-center font-display font-bold text-xl shadow-md mb-5">2</div>
+          <h3 class="font-display text-xl font-bold leading-snug mb-3 text-ink-900">Zavolám vám do 24 hodin</h3>
+          <p class="text-slate-600 leading-relaxed">Ne call centrum — volám osobně. 10 minut, projdeme detaily, řekneme si tržní odhad a strategii.</p>
+        </div>
+        <div class="rounded-3xl bg-white border border-slate-200 p-8">
+          <div class="w-12 h-12 rounded-full bg-brand-500 text-white grid place-items-center font-display font-bold text-xl shadow-md mb-5">3</div>
+          <h3 class="font-display text-xl font-bold leading-snug mb-3 text-ink-900">Postarám se o prodej</h3>
+          <p class="text-slate-600 leading-relaxed">Fotky, marketing, prohlídky, smlouva, převod katastru, finance. Vy jen podepisujete a inkasujete.</p>
+        </div>
+      </div>
+      <div class="mt-14 text-center">
+        <a class="inline-flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600 text-white font-semibold px-7 py-4 rounded-full shadow-lg shadow-brand-500/25 transition tracking-wide" href="/prodej-bytu">Začít s krokem 1 <span>→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="reference" class="py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <div class="text-sm font-semibold text-brand-600 uppercase tracking-[0.2em] mb-3">Reference</div>
+        <h2 class="font-display text-3xl md:text-5xl font-extrabold tracking-tight text-ink-900 leading-tight">Co o mně říkají klienti</h2>
+      </div>
+      <div class="mt-14 grid md:grid-cols-3 gap-6">
+        <figure class="rounded-3xl bg-white border border-slate-200 p-8 hover:border-brand-200 transition">
+          <div class="text-brand-500 text-3xl leading-none mb-3 font-display">"</div>
+          <blockquote class="text-ink-900 leading-relaxed">Stěhovali jsme se z Brna do Curychu, Iveta zařídila prodej úplně na dálku. Vše přes e-podpis, kvartální reporty. Bez zaváhání doporučuji.</blockquote>
+          <figcaption class="mt-6 pt-5 border-t border-slate-100 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-brand-100 text-brand-700 grid place-items-center font-semibold text-sm">TH</div>
+            <div class="text-sm"><div class="font-semibold">Tomáš H.</div><div class="text-slate-500">3+1, Brno-Veveří</div></div>
+          </figcaption>
+        </figure>
+        <figure class="rounded-3xl bg-white border border-slate-200 p-8 hover:border-brand-200 transition">
+          <div class="text-brand-500 text-3xl leading-none mb-3 font-display">"</div>
+          <blockquote class="text-ink-900 leading-relaxed">Odešel jsem za prací do Prahy, byt v Brně potřeboval prodat. Iveta vyřídila všechno — fotky, prohlídky, smlouvu — bez mé přítomnosti.</blockquote>
+          <figcaption class="mt-6 pt-5 border-t border-slate-100 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-brand-100 text-brand-700 grid place-items-center font-semibold text-sm">PD</div>
+            <div class="text-sm"><div class="font-semibold">Pavel D.</div><div class="text-slate-500">2+kk, Brno-Komín</div></div>
+          </figcaption>
+        </figure>
+        <figure class="rounded-3xl bg-white border border-slate-200 p-8 hover:border-brand-200 transition">
+          <div class="text-brand-500 text-3xl leading-none mb-3 font-display">"</div>
+          <blockquote class="text-ink-900 leading-relaxed">Stěhovali jsme se za dětmi na vesnici. Iveta nám byt prodala za měsíc za cenu, kterou jsme očekávali. Profesionalita.</blockquote>
+          <figcaption class="mt-6 pt-5 border-t border-slate-100 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-brand-100 text-brand-700 grid place-items-center font-semibold text-sm">MN</div>
+            <div class="text-sm"><div class="font-semibold">Marie N.</div><div class="text-slate-500">3+1, Olomouc-centrum</div></div>
+          </figcaption>
+        </figure>
+      </div>
+      <p class="mt-8 text-xs text-slate-500 text-center">Reference jsou autentické. Kompletní jména a kontakty na vyžádání po vzájemném souhlasu.</p>
+    </div>
+  </section>
+
+  <section id="iveta" class="py-20 md:py-28 bg-gradient-to-b from-white to-slate-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-7">
+          <div class="text-sm font-semibold text-brand-600 uppercase tracking-[0.2em] mb-3">O mně</div>
+          <h2 class="font-display text-3xl md:text-5xl font-extrabold tracking-tight text-ink-900 leading-tight">Mgr. Iveta Smolková</h2>
+          <div class="mt-6 space-y-4 text-slate-600 leading-relaxed text-lg">
+            <p>Začala jsem jako realitní makléřka před více než 10 lety v Brně. Dnes pracuji s klienty v Brně, Olomouci a Zlíně — od mladých rodin přes investory s portfoliem 5 bytů až po klienty s děděným bytem, kterým chci pomoct procesem.</p>
+            <p>Co dělám pořád stejně: <strong class="text-ink-900">profesionální fotky, home staging, ověření kupců a férová cena</strong>. Smlouvu mám připravenou tak, aby chránila prodávajícího i kupujícího — žádné překvapení po podpisu.</p>
+            <p>Co nedělám: <strong class="text-ink-900">negarantuji nemožné</strong>. Trh je trh, lidé jsou lidé. Garantuji ale poctivý proces, čísla, která mám pod kontrolou, a smlouvu, která drží u soudu.</p>
+          </div>
+          <div class="mt-10 grid grid-cols-3 gap-4 max-w-md">
+            <div class="bg-white rounded-2xl border border-slate-200 p-5 text-center"><div class="font-display text-3xl font-extrabold text-brand-600">10+</div><div class="text-xs text-slate-500 mt-1">let praxe</div></div>
+            <div class="bg-white rounded-2xl border border-slate-200 p-5 text-center"><div class="font-display text-3xl font-extrabold text-brand-600">400+</div><div class="text-xs text-slate-500 mt-1">prodaných bytů</div></div>
+            <div class="bg-white rounded-2xl border border-slate-200 p-5 text-center"><div class="font-display text-3xl font-extrabold text-brand-600">3</div><div class="text-xs text-slate-500 mt-1">města</div></div>
+          </div>
+        </div>
+        <div class="lg:col-span-5">
+          <div class="rounded-3xl overflow-hidden bg-white border border-slate-200 shadow-xl aspect-[4/5]">
+            <img src="/images/iveta-portrait.jpg" alt="Mgr. Iveta Smolková" class="w-full h-full" style="object-fit:cover;object-position:center top">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="py-20 md:py-28">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div>
+        <div class="text-sm font-semibold text-brand-600 uppercase tracking-[0.2em] mb-3">FAQ</div>
+        <h2 class="font-display text-3xl md:text-5xl font-extrabold tracking-tight text-ink-900 leading-tight">Časté dotazy</h2>
+      </div>
+      <div class="mt-12 space-y-3">
+        {faqs.map((f) => (
+          <details class="group rounded-2xl border border-slate-200 bg-white open:border-brand-300 open:shadow-md transition">
+            <summary class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer list-none font-semibold text-ink-900">
+              <span>{f.q}</span>
+              <span class="w-8 h-8 rounded-full bg-slate-100 grid place-items-center text-slate-500 group-open:bg-brand-500 group-open:text-white group-open:rotate-45 transition-all text-xl leading-none flex-shrink-0">+</span>
+            </summary>
+            <div class="px-6 pb-6 text-slate-600 leading-relaxed">{f.a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt" class="relative overflow-hidden bg-ink-900 text-white">
+    <div class="absolute inset-0 bg-gradient-to-br from-brand-700/40 via-ink-900 to-ink-900"></div>
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center">
+      <h2 class="font-display text-3xl md:text-5xl font-extrabold tracking-tight max-w-2xl mx-auto leading-[1.1]">Připraveni na první krok?</h2>
+      <p class="mt-5 text-lg text-slate-300 max-w-xl mx-auto">Začneme krátkým dotazníkem (60 vteřin). Do 24 hodin vám zavolám s tržním odhadem ceny.</p>
+      <div class="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
+        <a class="inline-flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600 text-white font-semibold px-7 py-4 rounded-full shadow-lg shadow-brand-500/25 transition tracking-wide" href="/prodej-bytu">Vypočítat cenu bytu zdarma <span>→</span></a>
+        <a href="tel:+420777879317" class="inline-flex items-center justify-center gap-2 bg-transparent hover:bg-white/10 border border-white/30 text-white font-semibold px-7 py-4 rounded-full transition">📞 +420 777 879 317</a>
+      </div>
+      <p class="mt-6 text-sm text-slate-400">Konzultace je zdarma. Provize platíte až po podpisu kupní smlouvy.</p>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

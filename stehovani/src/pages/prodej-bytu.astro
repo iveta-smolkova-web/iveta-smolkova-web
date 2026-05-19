@@ -1,0 +1,304 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const title = "Vypočítat nabídku na prodej bytu | Mgr. Iveta Smolková";
+const description = "Vyplňte krátký dotazník (60 sekund) a do 24 hodin vám zavolám s individuální nabídkou na prodej vašeho bytu v Brně, Olomouci nebo Zlíně.";
+---
+
+<Layout title={title} description={description}>
+  <Nav />
+
+  <section class="py-12 md:py-20 bg-gradient-to-b from-brand-50 to-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex items-center gap-2 bg-white border border-slate-200 rounded-full px-3 py-1 text-xs font-medium text-slate-700 mb-6 shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-green-500"></span>
+        Trvá 60 sekund · 8 jednoduchých otázek
+      </div>
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900">
+        Vypočítáme cenu vašeho bytu
+      </h1>
+      <p class="mt-6 text-lg text-slate-600 max-w-2xl mx-auto">
+        Odpovězte na pár otázek, dostanete tržní odhad a do 24 hodin vám zavolám s konkrétní nabídkou.
+        Bez závazku, bez registrace.
+      </p>
+    </div>
+  </section>
+
+  <section class="pb-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-3xl border border-slate-100 shadow-xl overflow-hidden">
+        <!-- QUIZ — vlastní implementace s POST na backend -->
+        <div id="quiz-root" class="p-6 md:p-10">
+          <!-- Progress bar -->
+          <div class="mb-8">
+            <div class="flex justify-between text-xs text-slate-500 mb-2">
+              <span>Krok <span id="step-current">1</span> z 8</span>
+              <span><span id="step-percent">12</span>% hotovo</span>
+            </div>
+            <div class="h-2 bg-slate-100 rounded-full overflow-hidden">
+              <div id="step-bar" class="h-full bg-brand-600 transition-all" style="width: 12%"></div>
+            </div>
+          </div>
+
+          <form id="quiz-form" novalidate>
+            <!-- STEP 1 -->
+            <div data-step="1" class="quiz-step">
+              <h2 class="text-2xl font-bold text-slate-900">V jakém městě je byt?</h2>
+              <p class="text-slate-500 mt-2">Vyberte lokalitu</p>
+              <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {['Brno', 'Olomouc', 'Zlín'].map(c => (
+                  <label class="quiz-card">
+                    <input type="radio" name="city" value={c} class="sr-only" required />
+                    <span>{c}</span>
+                  </label>
+                ))}
+                <label class="quiz-card sm:col-span-3">
+                  <input type="radio" name="city" value="other" class="sr-only" />
+                  <span>Jiné město</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- STEP 2 -->
+            <div data-step="2" class="quiz-step hidden">
+              <h2 class="text-2xl font-bold text-slate-900">Jaká je dispozice?</h2>
+              <p class="text-slate-500 mt-2">Vyberte počet pokojů</p>
+              <div class="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {['1+kk', '1+1', '2+kk', '2+1', '3+kk', '3+1', '4+kk', '4+1', '5+'].map(d => (
+                  <label class="quiz-card">
+                    <input type="radio" name="layout" value={d} class="sr-only" required />
+                    <span>{d}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <!-- STEP 3 -->
+            <div data-step="3" class="quiz-step hidden">
+              <h2 class="text-2xl font-bold text-slate-900">Plocha bytu (m²)?</h2>
+              <p class="text-slate-500 mt-2">Stačí přibližně</p>
+              <input type="number" name="area" min="15" max="500" placeholder="např. 65" class="mt-6 w-full text-2xl font-semibold p-5 border-2 border-slate-200 rounded-2xl focus:border-brand-500 focus:outline-none" required />
+            </div>
+
+            <!-- STEP 4 -->
+            <div data-step="4" class="quiz-step hidden">
+              <h2 class="text-2xl font-bold text-slate-900">Stav bytu?</h2>
+              <div class="mt-6 grid grid-cols-1 gap-3">
+                {[
+                  { v: 'new', l: 'Novostavba / kompletně rekonstruovaný' },
+                  { v: 'good', l: 'Po dílčí rekonstrukci, dobrý stav' },
+                  { v: 'original', l: 'Původní stav, k rekonstrukci' },
+                  { v: 'dont-know', l: 'Nevím, posoudíme spolu' }
+                ].map(o => (
+                  <label class="quiz-card text-left">
+                    <input type="radio" name="condition" value={o.v} class="sr-only" required />
+                    <span>{o.l}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <!-- STEP 5 -->
+            <div data-step="5" class="quiz-step hidden">
+              <h2 class="text-2xl font-bold text-slate-900">Kdy chcete prodat?</h2>
+              <div class="mt-6 grid grid-cols-1 gap-3">
+                {[
+                  { v: 'asap', l: 'Co nejdřív (do 30 dní)' },
+                  { v: '3m', l: 'Do 3 měsíců' },
+                  { v: '6m', l: 'Do půl roku' },
+                  { v: 'later', l: 'Zatím se rozhoduji' }
+                ].map(o => (
+                  <label class="quiz-card text-left">
+                    <input type="radio" name="timing" value={o.v} class="sr-only" required />
+                    <span>{o.l}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <!-- STEP 6 -->
+            <div data-step="6" class="quiz-step hidden">
+              <h2 class="text-2xl font-bold text-slate-900">Vlastníte byt?</h2>
+              <div class="mt-6 grid grid-cols-1 gap-3">
+                {[
+                  { v: 'sole', l: 'Ano, jsem jediný vlastník' },
+                  { v: 'shared', l: 'Ano, spolu s někým dalším' },
+                  { v: 'inheritance', l: 'Dědictví / probíhá řízení' },
+                  { v: 'other', l: 'Jiné' }
+                ].map(o => (
+                  <label class="quiz-card text-left">
+                    <input type="radio" name="ownership" value={o.v} class="sr-only" required />
+                    <span>{o.l}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <!-- STEP 7 -->
+            <div data-step="7" class="quiz-step hidden">
+              <h2 class="text-2xl font-bold text-slate-900">Jméno a kontakt</h2>
+              <p class="text-slate-500 mt-2">Pošlu vám odhad ceny a ozvu se do 24 hodin</p>
+              <div class="mt-6 space-y-4">
+                <input type="text" name="name" placeholder="Jméno a příjmení" class="w-full p-4 border-2 border-slate-200 rounded-xl focus:border-brand-500 focus:outline-none" required />
+                <input type="tel" name="phone" placeholder="Telefon (např. +420...)" class="w-full p-4 border-2 border-slate-200 rounded-xl focus:border-brand-500 focus:outline-none" required />
+                <input type="email" name="email" placeholder="E-mail" class="w-full p-4 border-2 border-slate-200 rounded-xl focus:border-brand-500 focus:outline-none" required />
+              </div>
+            </div>
+
+            <!-- STEP 8 -->
+            <div data-step="8" class="quiz-step hidden">
+              <h2 class="text-2xl font-bold text-slate-900">Souhlas a odeslání</h2>
+              <p class="text-slate-500 mt-2">Krátká rekapitulace a souhlas s GDPR</p>
+              <div class="mt-6 bg-slate-50 rounded-2xl p-5 text-sm text-slate-600">
+                <div id="recap"></div>
+              </div>
+              <label class="mt-6 flex items-start gap-3 text-sm text-slate-700 cursor-pointer">
+                <input type="checkbox" name="gdpr" class="mt-1 w-5 h-5 rounded text-brand-500" required />
+                <span>Souhlasím se zpracováním osobních údajů pro účely zpracování poptávky. Údaje neposkytujeme třetím stranám.</span>
+              </label>
+            </div>
+
+            <!-- NAV BUTTONS -->
+            <div class="mt-10 flex items-center justify-between gap-4">
+              <button type="button" id="btn-prev" class="px-5 py-3 text-slate-600 hover:text-slate-900 font-medium hidden">← Zpět</button>
+              <div class="flex-1"></div>
+              <button type="button" id="btn-next" class="px-6 py-3 bg-brand-500 hover:bg-brand-600 text-white font-semibold rounded-xl shadow transition">Pokračovat →</button>
+              <button type="submit" id="btn-submit" class="px-6 py-3 bg-brand-500 hover:bg-brand-600 text-white font-semibold rounded-xl shadow transition hidden">Odeslat poptávku ✓</button>
+            </div>
+          </form>
+
+          <!-- Loading + result states -->
+          <div id="quiz-loading" class="hidden text-center py-12">
+            <div class="inline-block w-12 h-12 border-4 border-brand-200 border-t-brand-500 rounded-full animate-spin"></div>
+            <p class="mt-4 text-slate-600">Odesíláme poptávku...</p>
+          </div>
+          <div id="quiz-error" class="hidden mt-6 bg-red-50 border border-red-200 rounded-xl p-4 text-red-700 text-sm"></div>
+        </div>
+      </div>
+
+      <p class="mt-8 text-center text-sm text-slate-500">
+        Raději hovor? Volejte přímo: <a href="tel:+420777879317" class="text-brand-500 font-semibold">+420 777 879 317</a>
+      </p>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .quiz-card {
+    @apply flex items-center justify-center text-center px-4 py-4 border-2 border-slate-200 rounded-2xl cursor-pointer hover:border-brand-400 hover:bg-brand-50 transition font-medium text-slate-900;
+  }
+  .quiz-card:has(input:checked) {
+    @apply border-brand-500 bg-brand-50 text-brand-700;
+  }
+</style>
+
+<script>
+  // Backend endpoint — proxy přes Cloudflare tunel na lokální backend port 8766
+  // Honza: nahraď URL produkčním endpointem (Pipedrive backend)
+  const BACKEND_URL = '/api/leads';
+
+  const TOTAL_STEPS = 8;
+  let current = 1;
+
+  const form = document.getElementById('quiz-form') as HTMLFormElement;
+  const btnNext = document.getElementById('btn-next') as HTMLButtonElement;
+  const btnPrev = document.getElementById('btn-prev') as HTMLButtonElement;
+  const btnSubmit = document.getElementById('btn-submit') as HTMLButtonElement;
+  const stepCurrent = document.getElementById('step-current')!;
+  const stepPercent = document.getElementById('step-percent')!;
+  const stepBar = document.getElementById('step-bar') as HTMLElement;
+  const recap = document.getElementById('recap')!;
+  const errorEl = document.getElementById('quiz-error')!;
+  const loadingEl = document.getElementById('quiz-loading')!;
+
+  function showStep(n: number) {
+    document.querySelectorAll('.quiz-step').forEach(el => el.classList.add('hidden'));
+    document.querySelector(`[data-step="${n}"]`)?.classList.remove('hidden');
+    stepCurrent.textContent = String(n);
+    const pct = Math.round((n / TOTAL_STEPS) * 100);
+    stepPercent.textContent = String(pct);
+    stepBar.style.width = pct + '%';
+    btnPrev.classList.toggle('hidden', n === 1);
+    btnNext.classList.toggle('hidden', n === TOTAL_STEPS);
+    btnSubmit.classList.toggle('hidden', n !== TOTAL_STEPS);
+    if (n === TOTAL_STEPS) buildRecap();
+  }
+
+  function validateCurrent(): boolean {
+    const stepEl = document.querySelector(`[data-step="${current}"]`)!;
+    const inputs = stepEl.querySelectorAll('input[required]');
+    let valid = true;
+    let radioGroups = new Set<string>();
+    inputs.forEach((inp: any) => {
+      if (inp.type === 'radio') radioGroups.add(inp.name);
+      else if (!inp.value || (inp.type === 'email' && !inp.value.includes('@'))) {
+        valid = false;
+        inp.classList.add('border-red-400');
+      } else {
+        inp.classList.remove('border-red-400');
+      }
+    });
+    radioGroups.forEach(name => {
+      const checked = form.querySelector(`input[name="${name}"]:checked`);
+      if (!checked) valid = false;
+    });
+    if (!valid) errorEl.textContent = 'Prosím vyplňte všechna povinná pole.';
+    errorEl.classList.toggle('hidden', valid);
+    return valid;
+  }
+
+  function buildRecap() {
+    const data = new FormData(form);
+    const lines = [
+      `Město: ${data.get('city') || '—'}`,
+      `Dispozice: ${data.get('layout') || '—'}`,
+      `Plocha: ${data.get('area') || '—'} m²`,
+      `Stav: ${data.get('condition') || '—'}`,
+      `Termín: ${data.get('timing') || '—'}`,
+      `Vlastník: ${data.get('ownership') || '—'}`,
+      `Kontakt: ${data.get('name') || '—'} · ${data.get('phone') || '—'}`
+    ];
+    recap.innerHTML = lines.map(l => `<div>${l}</div>`).join('');
+  }
+
+  btnNext.addEventListener('click', () => {
+    if (!validateCurrent()) return;
+    current = Math.min(TOTAL_STEPS, current + 1);
+    showStep(current);
+  });
+  btnPrev.addEventListener('click', () => {
+    current = Math.max(1, current - 1);
+    showStep(current);
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!validateCurrent()) return;
+    loadingEl.classList.remove('hidden');
+    form.classList.add('hidden');
+    errorEl.classList.add('hidden');
+
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    try {
+      const res = await fetch(BACKEND_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...data, source: 'stehovani.ivetasmolkova.cz/prodej-bytu', ts: new Date().toISOString() })
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      window.location.href = '/dekujeme';
+    } catch (err: any) {
+      loadingEl.classList.add('hidden');
+      form.classList.remove('hidden');
+      errorEl.textContent = 'Odeslání se nezdařilo. Zavolejte prosím přímo na +420 777 879 317. (' + err.message + ')';
+      errorEl.classList.remove('hidden');
+    }
+  });
+
+  showStep(1);
+</script>
