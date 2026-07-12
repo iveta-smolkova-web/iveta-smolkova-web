@@ -4,7 +4,7 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 
 const title = "Pomáhám lidem s bydlením | Mgr. Iveta Smolková";
-const description = "Mgr. Iveta Smolková — realitní makléřka v Brně, Olomouci a Zlíně. Exkluzivní realitní služby, osobní přístup, 10+ let zkušeností. Vypočítejte si individuální nabídku za 60 sekund.";
+const description = "Mgr. Iveta Smolková — realitní makléřka pro Olomoucko (i Brno a Zlín). Exkluzivní realitní služby, osobní přístup, 12 let zkušeností. Vypočítejte si individuální nabídku za 60 sekund.";
 
 const pains = [
   {
@@ -50,24 +50,48 @@ const refs = [
 
 const faqs = [
   {
-    q: "Kolik stojí vaše služby?",
-    a: "Provize je standardní v oboru a vždy se domlouvá předem písemně, bez skrytých poplatků. Mým cílem je, aby výsledek po mé práci byl pro vás jednoznačně lepší než kdybyste prodávali sami."
+    q: "Kolik stojí vaše služby / jaká je provize?",
+    a: "Provize je standardní v oboru a vždy se domlouvá předem písemně, bez skrytých poplatků. Cílem je, aby výsledek po mé práci byl pro vás jednoznačně lepší, než kdybyste prodávali sami."
   },
   {
-    q: "Co když nedokážete byt prodat?",
-    a: "Smlouvu uzavírám s jasnými výstupy a milníky. Pokud byt v dohodnutém čase neprodáme, máte právo od smlouvy bez sankcí odstoupit."
+    q: "Kdo platí provizi — prodávající, nebo kupující?",
+    a: "Provizi hradí strana, se kterou mám podepsanou zprostředkovatelskou smlouvu, nejčastěji prodávající. Kdo co platí, víte předem a černé na bílém, žádné překvapení u podpisu."
   },
   {
-    q: "Jaký je rozdíl mezi vámi a Reas / RE/MAX?",
-    a: "Nejsem franšíza ani algoritmus. Vedu prodej osobně, znáte mě jménem, máte na mě přímé číslo. U mě nedostanete koordinátora #4 z call centra."
+    q: "Jak dlouho trvá prodej nemovitosti?",
+    a: "V mé praxi je průměr kolem 30 dní od podpisu smlouvy do rezervace. Dobře připravený a správně oceněný byt se často prodá do 14 dní."
   },
   {
-    q: "Jak rychle prodáte?",
-    a: "Průměr v Brně je v mé praxi 30 dní od podpisu smlouvy do rezervace. Dobře připravený a oceněný byt často prodám do 14 dní."
+    q: "Co když se byt nepodaří prodat?",
+    a: "Smlouvu uzavírám s jasnými výstupy a milníky. Pokud nemovitost v dohodnutém čase neprodáme, máte právo od smlouvy bez sankcí odstoupit."
   },
   {
-    q: "Co se zařizováním smluv a převodu?",
-    a: "Komplet přebírám — rezervace, kupní smlouva, advokátní úschova, návrh na vklad do katastru, předání bytu. Vy jen podepisujete na předem domluvených schůzkách."
+    q: "Jak stanovíte cenu nemovitosti / uděláte odhad?",
+    a: "Cenu stavím na reálných datech z dané lokality a z aktuální poptávky, ne na přání. Tržní odhad ceny vám udělám nezávazně a zdarma ještě před tím, než se do prodeje pustíme."
+  },
+  {
+    q: "Co potřebuju k prodeji zděděného bytu?",
+    a: "Hlavní je mít pravomocně skončené dědické řízení a být zapsaný jako vlastník v katastru. Pak stačí výpis z katastru, nabývací titul (usnesení o dědictví) a doklad totožnosti. Pokud dědiců je víc, provedu vás i dohodou mezi spoluvlastníky. Zbytek papírů zařídím za vás."
+  },
+  {
+    q: "Jde prodat nemovitost, kterou vlastní víc lidí (spoluvlastnictví)?",
+    a: "Ano. K prodeji celé nemovitosti je potřeba souhlas všech spoluvlastníků. Pomůžu s komunikací mezi nimi i s rozdělením výtěžku podle podílů, aby to bylo férové a bez sporů."
+  },
+  {
+    q: "Jaký je rozdíl mezi vámi a velkou kanceláří typu RE/MAX nebo Reas?",
+    a: "Nejsem franšíza ani algoritmus. Prodej vedu osobně, znáte mě jménem a máte na mě přímé číslo. Nedostanete koordinátora z call centra, jednáte pořád se mnou."
+  },
+  {
+    q: "Zařídíte i smlouvy a převod v katastru?",
+    a: "Ano, kompletně. Rezervační i kupní smlouva, advokátní úschova, návrh na vklad do katastru i předání nemovitosti — vše přebírám. Vy jen podepisujete na předem domluvených schůzkách."
+  },
+  {
+    q: "Jak je ošetřené, že o peníze nepřijdu?",
+    a: "Kupní cena jde přes advokátní nebo notářskou úschovu a prodávajícímu se uvolní až po zápisu nového vlastníka do katastru. Ani jedna strana tak neriskuje."
+  },
+  {
+    q: "V jakých lokalitách působíte?",
+    a: "Především Olomouc a okolí, běžně ale vedu obchody i v Brně a Zlíně. Když si nejste jistí, jestli k vám dojedu, zavolejte — většinou to jde vyřešit."
   }
 ];
 ---
@@ -88,7 +112,7 @@ const faqs = [
           <span class="block text-brand-500">s&nbsp;bydlením</span>
         </h1>
         <p class="mt-6 text-lg md:text-xl text-slate-700 max-w-xl leading-relaxed">
-          Prodám váš byt v&nbsp;Brně do 30&nbsp;dní — bez prohlídek na úkor vašich víkendů. Mgr. Iveta Smolková, 10+&nbsp;let zkušeností v&nbsp;Brně, Olomouci a&nbsp;Zlíně.
+          Prodám vaši nemovitost na&nbsp;Olomoucku do 30&nbsp;dní — bez prohlídek na úkor vašich víkendů. Mgr. Iveta Smolková, 12&nbsp;let zkušeností, Olomouc, Brno a&nbsp;Zlín.
         </p>
         <div class="mt-8 flex flex-col sm:flex-row gap-4">
           <a href="/prodej-bytu" class="inline-flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600 text-white font-semibold px-7 py-4 rounded-full shadow-lg shadow-brand-500/25 transition tracking-wide">
@@ -210,6 +234,9 @@ const faqs = [
           Smluvní partner <span class="font-semibold text-slate-700">REALITY PRORADOST s.r.o.</span>
         </div>
         <p class="mt-6 text-lg text-slate-700 leading-relaxed">
+          Realitám se věnuji <strong>12&nbsp;let</strong> a pomohla jsem s&nbsp;<strong>desítkami úspěšně prodaných a&nbsp;pronajatých nemovitostí</strong>, především na&nbsp;Olomoucku. Prodej vedu osobně od&nbsp;první schůzky po&nbsp;předání klíčů.
+        </p>
+        <p class="mt-4 text-lg text-slate-700 leading-relaxed">
           Vše je o&nbsp;komunikaci. Každý člověk je individuální stejně jako vaše potřeby. Přesně tak pracuji. Potřebujete najít vhodné řešení? <strong>Ozvěte se mi.</strong>
         </p>
         <p class="mt-4 text-lg text-slate-700 leading-relaxed">
@@ -225,9 +252,12 @@ const faqs = [
           <a href="tel:+420777879317" class="inline-flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600 text-white font-semibold px-7 py-4 rounded-full shadow transition">
             📞 +420 777 879 317
           </a>
-          <a href="mailto:iveta.smolkova@email.cz" class="inline-flex items-center justify-center gap-2 bg-white border border-slate-200 hover:border-brand-400 text-ink-900 font-semibold px-7 py-4 rounded-full transition">
-            ✉️ iveta.smolkova@email.cz
+          <a href="mailto:Iveta.Smolkova@email.cz" class="inline-flex items-center justify-center gap-2 bg-white border border-slate-200 hover:border-brand-400 text-ink-900 font-semibold px-7 py-4 rounded-full transition">
+            ✉️ Iveta.Smolkova@email.cz
           </a>
+        </div>
+        <div class="mt-4">
+          <a href="/o-mne" class="text-brand-500 font-semibold hover:text-brand-600 transition">Přečtěte si více o mně →</a>
         </div>
       </div>
     </div>
@@ -239,7 +269,7 @@ const faqs = [
       <div class="text-center max-w-2xl mx-auto">
         <div class="text-xs font-semibold text-brand-500 uppercase tracking-widest mb-3">FAQ</div>
         <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-ink-900">Časté dotazy</h2>
-        <p class="mt-4 text-lg text-slate-600">Nenašli jste odpověď? Napište mi na <a href="mailto:iveta.smolkova@email.cz" class="text-brand-500 underline">iveta.smolkova@email.cz</a>.</p>
+        <p class="mt-4 text-lg text-slate-600">Nenašli jste odpověď? Napište mi na <a href="mailto:Iveta.Smolkova@email.cz" class="text-brand-500 underline">Iveta.Smolkova@email.cz</a>.</p>
       </div>
       <div class="mt-12 space-y-4">
         {faqs.map(f => (
@@ -254,6 +284,18 @@ const faqs = [
       </div>
     </div>
   </section>
+
+  <!-- Schema.org FAQPage (generováno z pole faqs výše, drží se 1:1 s viditelnou FAQ sekcí) -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": "https://ivetasmolkova.cz/#faq",
+    "mainEntity": faqs.map(f => ({
+      "@type": "Question",
+      "name": f.q,
+      "acceptedAnswer": { "@type": "Answer", "text": f.a }
+    }))
+  })} />
 
   <!-- FINAL CTA -->
   <section class="py-20 md:py-28 bg-brand-500 text-white">
