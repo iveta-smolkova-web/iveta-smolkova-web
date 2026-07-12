@@ -1,0 +1,100 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const title = "O mně | Mgr. Iveta Smolková — realitní makléřka Olomouc";
+const description = "Mgr. Iveta Smolková, realitní makléřka pro Olomoucko. 12 let v oboru, desítky úspěšně prodaných a pronajatých nemovitostí, osobní vedení od A do Z. Smluvní partner REALITY PRORADOST.";
+
+const usp = [
+  { t: "Osobní vedení od A do Z", d: "Každý prodej vedu osobně od první schůzky po předání klíčů. Žádný koordinátor z call centra, jednáte pořád se mnou." },
+  { t: "Tržně ověřené ocenění, ne hádání", d: "Cenu stavím na reálných datech z lokality a z aktuální poptávky, ne na přání. Dobře oceněná nemovitost se prodává rychle a za víc." },
+  { t: "Smlouva s jasnými milníky", d: "Uzavírám smlouvu s jasnými výstupy a možností bez sankcí odstoupit, pokud nemovitost v dohodnutém čase neprodáme. Riziko neházím na vás." },
+  { t: "Kompletní právní servis", d: "Rezervace, kupní smlouva, advokátní úschova, návrh na vklad do katastru i předání. Vše pod kontrolou, abyste se nebáli o peníze ani o termíny." }
+];
+---
+
+<Layout title={title} description={description}>
+  <Nav />
+
+  <!-- HERO O MNĚ -->
+  <section class="relative overflow-hidden bg-gradient-to-b from-brand-50 via-white to-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-16 md:pt-24 md:pb-20 grid md:grid-cols-5 gap-12 items-center">
+      <div class="md:col-span-2">
+        <img src="/images/iveta-portrait.jpg" alt="Mgr. Iveta Smolková, realitní makléřka Olomouc" class="aspect-[4/5] w-full object-cover rounded-3xl shadow-2xl shadow-ink-700/20" width="728" height="1024" />
+      </div>
+      <div class="md:col-span-3">
+        <div class="text-xs font-semibold text-brand-500 uppercase tracking-widest mb-3">Vaše realitní makléřka pro Olomoucko</div>
+        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-ink-900 leading-[1.05]">Mgr. Iveta Smolková</h1>
+        <div class="mt-3 text-sm text-slate-500">
+          Smluvní partner <span class="font-semibold text-slate-700">REALITY PRORADOST s.r.o.</span>
+        </div>
+        <p class="mt-6 text-lg text-slate-700 leading-relaxed">
+          Realitám se věnuji <strong>12&nbsp;let</strong> a za tu dobu jsem pomohla s&nbsp;<strong>desítkami úspěšně prodaných a&nbsp;pronajatých nemovitostí</strong>. Působím především v&nbsp;Olomouci a&nbsp;okolí, běžně ale vedu obchody i&nbsp;v&nbsp;Brně a&nbsp;Zlíně.
+        </p>
+        <p class="mt-4 text-lg text-slate-700 leading-relaxed">
+          Nejsem franšíza ani call centrum. Každý prodej vedu osobně od&nbsp;první schůzky až po&nbsp;předání klíčů. Znáte mě jménem, máte na&nbsp;mě přímé číslo a&nbsp;mluvíte pořád se&nbsp;mnou. Tohle je pro mě podstata dobré realitky: <strong>je to o&nbsp;lidech a&nbsp;o&nbsp;komunikaci.</strong>
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-4">
+          <a href="tel:+420777879317" class="inline-flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600 text-white font-semibold px-7 py-4 rounded-full shadow transition">
+            📞 +420 777 879 317
+          </a>
+          <a href="mailto:Iveta.Smolkova@email.cz" class="inline-flex items-center justify-center gap-2 bg-white border border-slate-200 hover:border-brand-400 text-ink-900 font-semibold px-7 py-4 rounded-full transition">
+            ✉️ Iveta.Smolkova@email.cz
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ČÍM SE LIŠÍM -->
+  <section class="py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <div class="text-xs font-semibold text-brand-500 uppercase tracking-widest mb-3">Čím se liším</div>
+        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-ink-900">Co u mě dostanete</h2>
+      </div>
+      <div class="mt-12 grid md:grid-cols-2 gap-6">
+        {usp.map(u => (
+          <div class="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm">
+            <h3 class="text-xl font-bold text-ink-900 mb-3 flex gap-3"><span class="text-brand-500">✓</span>{u.t}</h3>
+            <p class="text-slate-600 leading-relaxed">{u.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- JAK PRACUJI + SPECIALIZACE -->
+  <section class="py-20 md:py-28 bg-gradient-to-b from-white to-slate-50">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-xs font-semibold text-brand-500 uppercase tracking-widest mb-3">Jak pracuji</div>
+      <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-ink-900">Nejdřív vás vyslechnu, pak stavíme plán</h2>
+      <p class="mt-6 text-lg text-slate-700 leading-relaxed">
+        Vše je o komunikaci. Každý člověk i každá nemovitost jsou jiné, a tak k nim přistupuji. Nejdřív si sedneme a projdeme, co konkrétně potřebujete a co je pro vás nejvýhodnější. Teprve pak stavíme plán prodeje nebo hledání. Cílem není „mít zakázku", ale aby výsledek po mé práci byl pro vás jednoznačně lepší, než kdybyste to řešili sami.
+      </p>
+
+      <div class="mt-10 text-xs font-semibold text-brand-500 uppercase tracking-widest mb-3">Specializace</div>
+      <p class="text-lg text-slate-700 leading-relaxed">
+        Prodej a pronájem bytů a domů na Olomoucku, poradenství při prodeji zděděných nemovitostí a nemovitostí ve spoluvlastnictví, tržní odhad ceny a příprava nemovitosti k prodeji.
+      </p>
+
+      <div class="mt-10 rounded-2xl border border-slate-100 bg-white p-8 shadow-sm">
+        <h3 class="text-lg font-bold text-ink-900 mb-4">Ozvěte se mi</h3>
+        <ul class="space-y-2 text-slate-700">
+          <li><span class="text-brand-500 font-bold">📞</span> <a href="tel:+420777879317" class="hover:text-brand-500">+420 777 879 317</a></li>
+          <li><span class="text-brand-500 font-bold">✉️</span> <a href="mailto:Iveta.Smolkova@email.cz" class="hover:text-brand-500">Iveta.Smolkova@email.cz</a></li>
+          <li><span class="text-brand-500 font-bold">📍</span> Trnkova 539/36, Olomouc – Nové Sady, 779 00</li>
+          <li><span class="text-brand-500 font-bold">🔗</span> <a href="https://www.sreality.cz/adresar/iveta-smolkova-reality-proradost-olomouc-nove-sady/38508" class="hover:text-brand-500" target="_blank" rel="noopener">Profil na Sreality.cz</a></li>
+        </ul>
+        <div class="mt-6">
+          <a href="/prodej-bytu" class="inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white font-semibold px-7 py-4 rounded-full shadow transition">
+            Chci nezávazně ocenit nemovitost →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

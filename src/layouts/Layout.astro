@@ -52,27 +52,89 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).toStri
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Montserrat+Alternates:wght@500;600;700;800&display=swap" rel="stylesheet" />
 
-  <!-- Schema.org RealEstateAgent / Person -->
+  <!-- Schema.org Person + RealEstateAgent / LocalBusiness -->
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
-    "@type": "RealEstateAgent",
-    "name": "Mgr. Iveta Smolková",
-    "image": "https://ivetasmolkova.cz/og-default.jpg",
-    "telephone": "+420777879317",
-    "email": "iveta.smolkova@email.cz",
-    "url": "https://ivetasmolkova.cz",
-    "areaServed": ["Brno", "Olomouc", "Zlín"],
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "CZ",
-      "addressLocality": "Brno"
-    },
-    "jobTitle": "Realitní makléřka",
-    "knowsAbout": ["Prodej bytů", "Pronájem bytů", "Realitní poradenství"]
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://ivetasmolkova.cz/#iveta",
+        "name": "Mgr. Iveta Smolková",
+        "jobTitle": "Realitní makléřka",
+        "image": "https://ivetasmolkova.cz/images/iveta-portrait.jpg",
+        "url": "https://ivetasmolkova.cz/o-mne",
+        "telephone": "+420777879317",
+        "email": "Iveta.Smolkova@email.cz",
+        "worksFor": { "@id": "https://ivetasmolkova.cz/#agent" },
+        "knowsAbout": [
+          "Prodej bytů a domů",
+          "Pronájem nemovitostí",
+          "Prodej zděděných nemovitostí",
+          "Nemovitosti ve spoluvlastnictví",
+          "Tržní odhad ceny nemovitosti",
+          "Advokátní úschova a převod v katastru"
+        ],
+        "areaServed": ["Olomouc", "Olomoucký kraj", "Brno", "Zlín"],
+        "sameAs": [
+          "https://www.sreality.cz/adresar/iveta-smolkova-reality-proradost-olomouc-nove-sady/38508"
+        ]
+      },
+      {
+        "@type": ["RealEstateAgent", "LocalBusiness"],
+        "@id": "https://ivetasmolkova.cz/#agent",
+        "name": "Mgr. Iveta Smolková — realitní makléřka (REALITY PRORADOST)",
+        "image": "https://ivetasmolkova.cz/images/iveta-logo-full.png",
+        "url": "https://ivetasmolkova.cz",
+        "telephone": "+420777879317",
+        "email": "Iveta.Smolkova@email.cz",
+        "priceRange": "Provize dle dohody",
+        "currenciesAccepted": "CZK",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Trnkova 539/36",
+          "addressLocality": "Olomouc",
+          "addressRegion": "Olomoucký kraj",
+          "postalCode": "779 00",
+          "addressCountry": "CZ"
+        },
+        "areaServed": [
+          { "@type": "City", "name": "Olomouc" },
+          { "@type": "AdministrativeArea", "name": "Olomoucký kraj" },
+          { "@type": "City", "name": "Brno" },
+          { "@type": "City", "name": "Zlín" }
+        ],
+        "parentOrganization": {
+          "@type": "Organization",
+          "name": "REALITY PRORADOST s.r.o."
+        },
+        "employee": { "@id": "https://ivetasmolkova.cz/#iveta" },
+        "knowsAbout": [
+          "Prodej bytů",
+          "Pronájem bytů",
+          "Prodej zděděných nemovitostí",
+          "Realitní poradenství"
+        ],
+        "sameAs": [
+          "https://www.sreality.cz/adresar/iveta-smolkova-reality-proradost-olomouc-nove-sady/38508"
+        ]
+      }
+    ]
   })} />
 </head>
 <body class="bg-white text-slate-900 antialiased font-sans">
   <slot />
+  <!-- Iveta AI chatbot widget (Ivetka) -->
+  <script is:raw data-cfasync="false">
+    window.IvetaChatbotConfig = {
+      backendUrl: 'https://chatbot.ivetasmolkova.cz',
+      primaryColor: '#C9A961',
+      creamColor: '#F5EDE0',
+      inkColor: '#2a2520',
+      agentName: 'Iveta',
+      welcomeMessage: '👋 Dobrý den! Jsem **Iveta AI** — asistentka Ivety Smolkové. Pomůžu vám najít byt, ocenit nemovitost, nebo se domluvit přímo s Ivetou. S čím začneme?'
+    };
+  </script>
+  <script is:inline data-cfasync="false" src="https://chatbot.ivetasmolkova.cz/widget-loader.js?v=20260528-fullconfig"></script>
 </body>
 </html>
 
