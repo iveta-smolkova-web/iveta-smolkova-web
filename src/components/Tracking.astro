@@ -57,12 +57,12 @@ const cookieBannerStyle = "#iveta-cookie-banner{position:fixed;bottom:16px;left:
 <script is:inline set:html={consentDefaultsScript} />
 <style is:inline set:html={cookieBannerStyle} />
 
-<script set:html={gtmHeadScript} />
-<noscript set:html={gtmNoscriptHtml} />
+<script is:inline set:html={gtmHeadScript} />
+<noscript set:html={gtmNoscriptHtml}></noscript>
 
-<!-- Cookie lista se injektuje na konec body pres skript nize (Tracking je v head). -->
-<script set:html={cookieBannerScript} />
+<!-- Cookie lista se injektuje na konec body pres skript nize. is:inline nutne, jinak Astro skript premisti dovnitr noscriptu. -->
+<script is:inline set:html={cookieBannerScript} />
 
 {conversion && (
-  <script set:html={conversionScript} />
+  <script is:inline set:html={conversionScript} />
 )}
