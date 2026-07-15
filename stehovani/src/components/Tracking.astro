@@ -1,72 +1,74 @@
 ---
-// Tracking script — GA4 + Google Ads + Sklik + Meta Pixel
-// Vše se aktivuje jen pokud jsou nastavené env vars v Netlify.
+// Tracking — GTM container (GTM-P2TNRZ9V) + Cookie Consent Banner (Google Consent Mode v2).
 //
-// Env vars (Netlify → Site settings → Environment variables):
-//   PUBLIC_GA4_ID                    — např. "G-XXXXXXXXXX" (z analytics.google.com)
-//   PUBLIC_GADS_ID                   — např. "AW-1234567890" (z Google Ads konverze)
-//   PUBLIC_GADS_CONVERSION_LABEL     — např. "abc123XYZ" (label z konverzní akce)
-//   PUBLIC_META_PIXEL_ID             — 15-16místné číslo (z Meta Events Manager)
-//   PUBLIC_SKLIK_ID                  — Sklik retargeting ID (z Sklik účtu)
+// GTM kontejner spravuje Honza v tagmanager.google.com (účet Mgr. Iveta Smolková
+// → ivetasmolkova.cz). Obsahuje:
+//   • GA4 — Config
+//   • Meta Pixel — All Pages (Stape)
+//   • Microsoft Clarity
+//   • Sklik — Retargeting (Custom HTML, rtgId 100276748, All Pages)
 //
-// Props:
-//   conversion (boolean) — pokud true, vystřelí konverzní event (na /dekujeme)
+// Cookie banner default deny (GDPR-compliant) + Google Consent Mode v2:
+// analytics_storage, ad_storage, ad_user_data, ad_personalization. Po klepnutí
+// uživatele se uloží volba do localStorage `iveta-consent-v1` a GTM dostane
+// update přes `gtag('consent', 'update', …)` aby tagy začaly měřit.
+//
+// Env vars (Cloudflare Pages):
+//   PUBLIC_GTM_ID                 — výchozí "GTM-P2TNRZ9V"
+//   PUBLIC_SKLIK_ID               — Sklik retargeting ID (fallback pro conversion)
+//   PUBLIC_GADS_CONVERSION_LABEL  — předá se do conversion eventu
+//
+// Props.conversion = true   → na /dekujeme vystřelí dataLayer.push({event:'generate_lead'}).
+
 export interface Props {
   conversion?: boolean;
 }
+
 const { conversion = false } = Astro.props;
 
-const GA4_ID = import.meta.env.PUBLIC_GA4_ID;
-const GADS_ID = import.meta.env.PUBLIC_GADS_ID;
-const GADS_LABEL = import.meta.env.PUBLIC_GADS_CONVERSION_LABEL;
-const META_PIXEL_ID = import.meta.env.PUBLIC_META_PIXEL_ID;
+const GTM_ID = import.meta.env.PUBLIC_GTM_ID || 'GTM-P2TNRZ9V';
 const SKLIK_ID = import.meta.env.PUBLIC_SKLIK_ID;
+const GADS_LABEL = import.meta.env.PUBLIC_GADS_CONVERSION_LABEL || '';
 
-const hasGoogle = !!(GA4_ID || GADS_ID);
+const consentDefaultsScript = "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('consent', 'default', { ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied', analytics_storage:'denied', security_storage:'granted', wait_for_update: 500 }); try { var saved = localStorage.getItem('iveta-consent-v1'); if (saved) { var parsed = JSON.parse(saved); gtag('consent', 'update', parsed); } } catch(e){}";
+
+const gtmHeadScript = "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','" + GTM_ID + "');";
+
+const gtmNoscriptHtml = '<iframe src="https://www.googletagmanager.com/ns.html?id=' + GTM_ID + '" height="0" width="0" style="display:none;visibility:hidden"></iframe>';
+
+const conversionPayload = {
+  event: 'generate_lead',
+  event_category: 'quiz',
+  event_label: 'prodej-bytu',
+  value: 500,
+  currency: 'CZK',
+  gads_conversion_label: GADS_LABEL,
+};
+const conversionScript = "window.addEventListener('load',function(){window.dataLayer=window.dataLayer||[];window.dataLayer.push(" + JSON.stringify(conversionPayload) + ");" + (SKLIK_ID ? "if(window.rc&&window.rc.conversionHit){window.rc.conversionHit({id:" + SKLIK_ID + ",value:500,consent:null});}" : "") + "});";
+
+const cookieBannerScript = "(function(){var KEY='iveta-consent-v1';function g(){window.dataLayer.push(arguments);}var banner=document.getElementById('iveta-cookie-banner');if(!banner)return;try{if(localStorage.getItem(KEY)){return;}}catch(e){}banner.style.display='flex';function decide(t){var c;if(t==='accept'){c={ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'};}else if(t==='analytics'){c={ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'granted'};}else{c={ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'};}try{localStorage.setItem(KEY,JSON.stringify(c));}catch(e){}g('consent','update',c);banner.style.display='none';}banner.addEventListener('click',function(e){var t=e.target&&e.target.dataset&&e.target.dataset.consent;if(t)decide(t);});})();";
+
+const cookieBannerStyle = "#iveta-cookie-banner{position:fixed;bottom:16px;left:16px;right:16px;max-width:540px;margin:0 auto;background:#FBF4E4;border:2px solid #C9A961;border-radius:12px;padding:16px 18px;box-shadow:0 6px 24px rgba(42,37,32,.18);z-index:2147483644;font-family:-apple-system,'Segoe UI',Roboto,sans-serif;font-size:13px;display:none;flex-direction:column;gap:12px;color:#5A3A1F;line-height:1.5}#iveta-cookie-banner p{margin:0}#iveta-cookie-banner a{color:#9C7E3F;text-decoration:underline}#iveta-cookie-banner .iveta-cookie-buttons{display:flex;gap:8px;flex-wrap:wrap}#iveta-cookie-banner button{padding:8px 14px;border-radius:6px;cursor:pointer;font-size:13px;font-family:inherit;border:1px solid #C9A961;background:#FFFFFF;color:#5A3A1F}#iveta-cookie-banner button[data-consent=\"accept\"]{background:#C9A961;color:#FFFFFF;border-color:#C9A961;font-weight:600}#iveta-cookie-banner button:hover{opacity:.9}@media (min-width:640px){#iveta-cookie-banner{flex-direction:row;align-items:center}#iveta-cookie-banner p{flex:1}}";
 ---
 
-{hasGoogle && (
-  <>
-    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID || GADS_ID}`}></script>
-    <script set:html={`
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      ${GA4_ID ? `gtag('config', '${GA4_ID}', { 'anonymize_ip': true });` : ''}
-      ${GADS_ID ? `gtag('config', '${GADS_ID}');` : ''}
-    `} />
-  </>
-)}
+<script is:inline set:html={consentDefaultsScript} />
+<style is:inline set:html={cookieBannerStyle} />
 
-{META_PIXEL_ID && (
-  <script set:html={`
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '${META_PIXEL_ID}');
-    fbq('track', 'PageView');
-  `} />
-)}
+<script set:html={gtmHeadScript} />
+<noscript set:html={gtmNoscriptHtml} />
 
-{SKLIK_ID && (
-  <>
-    <script type="text/javascript" src="https://c.seznam.cz/js/rc.js"></script>
-    <script set:html={`
-      window.sznIVA = window.sznIVA || {};
-      window.sznIVA.IS = window.sznIVA.IS || { updateIdentities: function(){} };
-      try { window.sznIVA.IS.updateIdentities({ eid: null }); } catch(e) {}
-      var retargetingConf = { rtgId: ${SKLIK_ID}, consent: null };
-      if (window.rc && window.rc.retargetingHit) window.rc.retargetingHit(retargetingConf);
-      else { document.addEventListener('DOMContentLoaded', function() { if (window.rc && window.rc.retargetingHit) window.rc.retargetingHit(retargetingConf); }); }
-    `} />
-  </>
-)}
+<div id="iveta-cookie-banner" role="dialog" aria-label="Souhlas s cookies">
+  <p>
+    Tento web používá cookies pro lepší zážitek a měření reklamy. Můžete je přijmout, nebo si vybrat, co povolíte. <a href="/gdpr">Více informací</a>
+  </p>
+  <div class="iveta-cookie-buttons">
+    <button type="button" data-consent="reject">Odmítnout</button>
+    <button type="button" data-consent="analytics">Jen analytika</button>
+    <button type="button" data-consent="accept">Přijmout vše</button>
+  </div>
+</div>
+<script set:html={cookieBannerScript} />
 
 {conversion && (
-  <script set:html={`
-    window.addEventListener('load', function() {
-      ${GA4_ID ? `if (typeof gtag !== 'undefined') gtag('event', 'generate_lead', { 'event_category': 'quiz', 'event_label': 'prodej-bytu' });` : ''}
-      ${GADS_ID && GADS_LABEL ? `if (typeof gtag !== 'undefined') gtag('event', 'conversion', { 'send_to': '${GADS_ID}/${GADS_LABEL}', 'value': 500.0, 'currency': 'CZK' });` : ''}
-      ${META_PIXEL_ID ? `if (typeof fbq !== 'undefined') fbq('track', 'Lead');` : ''}
-      ${SKLIK_ID ? `if (window.rc && window.rc.conversionHit) { window.rc.conversionHit({ id: ${SKLIK_ID}, value: 500, consent: null }); }` : ''}
-    });
-  `} />
+  <script set:html={conversionScript} />
 )}
